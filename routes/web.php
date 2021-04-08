@@ -16,6 +16,8 @@ use App\Http\Controllers\VoteController;
 
 Route::get('/',[VoteController::class,'index']);
 
+Route::resource('voto',[VoteController::class]);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
