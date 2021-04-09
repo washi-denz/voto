@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VoteController;
 
@@ -14,16 +15,21 @@ use App\Http\Controllers\VoteController;
 |
 */
 
-Route::get('/',[VoteController::class,'index']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+// ADMIN
+Route::resource('panel', AdminController::class)->middleware('auth');
 
-Route::resource('voto',VoteController::class);
 
-Route::get('/dni',[VoteController::class,'document'])->name('portal.vote.document');
+// PORTAL
+Route::get('/home', function () {
+    return view('index');
+});
 
-Route::post('/seleccion',[VoteController::class,'selection'])->name('portal.vote.selection');
+Route::get('/', [VoteController::class, 'index']);
+Route::resource('voto', VoteController::class);
 
-require __DIR__.'/auth.php';
+Route::get('/dni', [VoteController::class, 'document'])->name('portal.vote.document');
+
+Route::post('/seleccion', [VoteController::class, 'selection'])->name('portal.vote.selection');
+
+require __DIR__ . '/auth.php';
