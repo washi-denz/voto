@@ -6,7 +6,7 @@ Voto Electrónico Elección Municipio Escolar 2021
 
 @section('content')
 
-<h1>Voto Electrónico Elección Municipio Escolar 2021</h1>
+<h1 class="text-xl font-bold">Voto Electrónico Elección Municipio Escolar 2021</h1>
 
 <form action="{{ route('portal.vote.selection') }}" method="POST">
     @csrf
