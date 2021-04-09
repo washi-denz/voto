@@ -16,10 +16,14 @@ use App\Http\Controllers\VoteController;
 
 Route::get('/',[VoteController::class,'index']);
 
-Route::resource('voto',[VoteController::class]);
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::resource('voto',VoteController::class);
+
+Route::get('/dni',[VoteController::class,'document'])->name('portal.vote.document');
+
+Route::post('/seleccion',[VoteController::class,'selection'])->name('portal.vote.selection');
 
 require __DIR__.'/auth.php';
