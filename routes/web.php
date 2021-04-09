@@ -25,11 +25,17 @@ Route::get('/home', function () {
     return view('index');
 });
 
-Route::get('/', [VoteController::class, 'index']);
-Route::resource('voto', VoteController::class);
+Route::get('/', [VoteController::class, 'index'])->name('portal.vote.index');
+Route::resource('vote', VoteController::class);
 
 Route::get('/dni', [VoteController::class, 'document'])->name('portal.vote.document');
 
+Route::get('/seleccion', [VoteController::class, 'selection'])->name('portal.vote.selection');
 Route::post('/seleccion', [VoteController::class, 'selection'])->name('portal.vote.selection');
+Route::put('/seleccion', [VoteController::class, 'selection_show'])->name('portal.vote.selection.show');
+
+Route::get('/confirmar', [VoteController::class, 'confirm'])->name('portal.vote.confirm');
+Route::post('/confirmar', [VoteController::class, 'confirm'])->name('portal.vote.confirm');
+Route::post('/confirmar/{id}', [VoteController::class, 'confirm_update'])->name('portal.vote.confirm.update');
 
 require __DIR__ . '/auth.php';
