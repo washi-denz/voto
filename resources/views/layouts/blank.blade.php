@@ -19,18 +19,10 @@
 
 <body class="font-sans antialiased">
 
-    @include('layouts.navigate')
-
-    <div class="grid grid-cols-12 h-screen relative">
-
-        @include('layouts.sidebar')
-
-        <div class="col-span-10 absolute w-full mt-20">
-            <main class="bg-white md:ml-72 max-auto px-8 py-5">
-                @yield('content')
-            </main>
-        </div>
-    </div>
+    <main class="bg-white max-auto">
+        @include('layouts.navigate')
+        {{$slot}}
+    </main>
 
 </body>
 
