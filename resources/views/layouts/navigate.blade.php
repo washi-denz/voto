@@ -44,9 +44,9 @@
                         x-transition:leave-end="transform opacity-0 scale-95"
                         class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5"
                         role="menu" aria-orientation="vertical" aria-labelledby="user-menu" style="display: none;">
-                        <a href="#"
+                        <a href="{{route('panel.index')}}"
                             class="px-3 py-2 text-xs flex items-center h-full hover:text-blue-600 hover:bg-gray-100 uppercase">
-                            <span>Perfil</span>
+                            <span>Panel</span>
                         </a>
                         <form action="{{route('logout')}}" method="post">
                             @csrf
