@@ -1,3 +1,11 @@
+@extends('layouts.guest')
+
+@section('title')
+Voto Electrónico Elección Municipio Escolar 2021
+@endsection
+
+@section('content')
+
 <h1>Voto Electrónico Elección Municipio Escolar 2021</h1>
 
 <form action="{{ route('portal.vote.selection') }}" method="POST">
@@ -9,3 +17,5 @@
     @endif
     <input type="submit" value="ENVIAR">
 </form>
+
+@endsection
