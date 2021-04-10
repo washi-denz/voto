@@ -1,4 +1,4 @@
-@extends('layouts.guest')
+@extends('portal.layouts.app')
 
 @section('title')
 Voto Electrónico Elección Municipio Escolar 2021
@@ -6,16 +6,33 @@ Voto Electrónico Elección Municipio Escolar 2021
 
 @section('content')
 
-<h1 class="text-xl font-bold">Voto Electrónico Elección Municipio Escolar 2021</h1>
-
-<form action="{{ route('vote.store') }}" method="POST">
-    @csrf
-    <label for="code">Para emitir su voto ingrese su clave:</label><br>
-    <input type="text" name="code" id="code" value="@if(Session::has('code')) {{ Session::get('code') }} @endif"><br>
-    @if(Session::has('message'))
-    <p style="background:yellow;color:green; border:1px dotted green;">{{ Session::get('message') }}</p>
-    @endif
-    <input type="submit" value="ENVIAR">
-</form>
+<div class="container mx-auto lg:px-40 md:px-8 sm:px-16 pt-0 md:pt-32">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-6">
+        <div class="px-3">
+            <!--tilte big-->
+                <div class="flex">
+                    <img src="{{ asset('images/vote/logo.png') }}" alt="" class="w-16 h-16 md:w-20 md:h-20">
+                    <div class="px-3">
+                        <h1 class="text-gray-50 text-4xl font-medium uppercase">Voto electrónico</h1>
+                        <p class="text-indigo-200 text-opacity-70 text-lg font-medium">Elección Municipio escolar 2021</p>
+                    </div>
+                </div>
+            <!--/title big-->
+        </div>
+        <div class="px-3 text-center md:text-left">
+            <form action="{{ route('vote.store') }}" method="POST">
+                @csrf
+                <label for="code" class="text-gray-100 text-xs font-light mb-4 block">Para emitir su <strong class="border-b-2 border-yellow-300">voto</strong> ,Ingrese su <strong class="border-b-2 border-yellow-300">código</strong> de votación:</label>
+                <input type="text" name="code" id="code" value="@if(Session::has('code')) {{ Session::get('code') }} @endif" class="focus:outline-none bg-indigo-400 bg-opacity-20 py-4 px-4 mb-6 mx-auto md:mx-0 text-xl text-center md:text-left text-indigo-50 text-opacity-70 placeholder-indigo-200  font-mono block" placeholder="Ingrese su código" autocomplete="off">
+                @if(Session::has('message'))
+                <p style="background:yellow;color:green; border:1px dotted green;">{{ Session::get('message') }}</p>
+                @endif
+                <button type="submit" class="focus:outline-none transition duration-500 w-32 py-2 px-2 font-semibold text-gray-200 bg-indigo-900 hover:bg-indigo-800 ring-2 ring-gray-200 m-2">Ingresar</button>
+            </form>
+        </div>
+    </div>
+    
+</div>
 
 @endsection
