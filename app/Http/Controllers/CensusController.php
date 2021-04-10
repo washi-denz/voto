@@ -7,9 +7,33 @@ use Illuminate\Http\Request;
 
 class CensusController extends Controller
 {
-    public function index()
+    function list(Request $request)
     {
-        $censuses = Census::all();
+        $queries = array();
+        $columns = [
+            'name',
+            'last_name',
+            'document',
+            'grade',
+            'code',
+        ];
+
+        $censuses = Census::select('*');
+        if ($request->has('filter') && in_array($request->filter, $columns)) {
+            $filter = trim($request->filter);
+            $order  = ($request->has('order') && $request->order == 'asc') ? 'asc' : 'desc';
+
+            $censuses->orderBy($filter, $order);
+            $queries['filter'] = $filter;
+            $queries['order']  = $order;
+        } else {
+            $censuses->orderBy('name', 'asc');
+        }
+        return $censuses->paginate(15)->appends($queries);
+    }
+    public function index(Request $request)
+    {
+        $censuses = $this->list($request);
         return view('panel.census.index', ['censuses' => $censuses]);
     }
 

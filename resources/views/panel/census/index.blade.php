@@ -11,8 +11,9 @@
         <table class="border-collapse w-full table-auto">
             <thead>
                 <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                    <th class="py-3 px-6 text-center hidden lg:table-cell">DNI</th>
                     <th class="py-3 px-6 text-center hidden lg:table-cell">Nombre y Apellidos</th>
+                    <th class="py-3 px-6 text-center hidden lg:table-cell">DNI</th>
+                    <th class="py-3 px-6 text-center hidden lg:table-cell">Codigo</th>
                     <th class="py-3 px-6 text-center hidden lg:table-cell">Estado</th>
                     <th class="py-3 px-6 text-center hidden lg:table-cell">Accion</th>
                 </tr>
@@ -22,6 +23,19 @@
                 <tr
                     class="bg-white lg:hover:bg-gray-300 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
                     <td
+                        class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block relative lg:table-cell lg:static lg:border-gray-200 lg:text-left">
+                        <span
+                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Nombres
+                            y Apellidos</span>
+                        <div class="flex justify-center lg:inline-flex">
+                            <img class="w-6 h-6 rounded-full border-gray-200 border"
+                                src="https://randomuser.me/api/portraits/men/1.jpg" />
+                        </div>
+                        <span class="font-medium">
+                            {{$census->name}} {{$census->last_name}}
+                        </span>
+                    </td>
+                    <td
                         class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block relative lg:table-cell lg:static lg:border-gray-200">
                         <span
                             class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">DNI</span>
@@ -30,17 +44,8 @@
                     <td
                         class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block relative lg:table-cell lg:static lg:border-gray-200">
                         <span
-                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Nombres
-                            y Apellidos</span>
-                        <div class="flex items-center justify-center">
-                            <div class="mr-2">
-                                <img class="w-6 h-6 rounded-full border-gray-200 border"
-                                    src="https://randomuser.me/api/portraits/men/1.jpg" />
-                            </div>
-                            <span class="font-medium">
-                                {{$census->name}} {{$census->last_name}}
-                            </span>
-                        </div>
+                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Codigo</span>
+                        {{$census->code}}
                     </td>
                     <td
                         class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block relative lg:table-cell lg:static lg:border-gray-200">
@@ -82,6 +87,9 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="py-5">
+            {{ $censuses->onEachSide(0)->links() }}
+        </div>
     </div>
 </div>
 @endsection
