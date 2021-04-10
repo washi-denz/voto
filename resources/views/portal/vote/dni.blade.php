@@ -6,7 +6,7 @@ Voto Electrónico Elección Municipio Escolar 2021
 
 @section('content')
 
-@include('portal.layouts.header')
+@include('portal.parts.header')
 
 <div class="container mx-auto lg:px-40 md:px-8 sm:px-16">
     

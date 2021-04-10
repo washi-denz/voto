@@ -26,7 +26,7 @@
 
 <body class="bg-indigo-900 m-0 mb-12 pb-12">
     @yield('content')
-    @include('portal.layouts.footer')
+    @include('portal.parts.footer')
 </body>
 
 </html>
