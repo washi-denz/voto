@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Census;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use App\Traits\UploadTrait;
 
 class CensusController extends Controller
 {
+    use UploadTrait;
     function list(Request $request)
     {
         $queries = array();
@@ -66,6 +69,18 @@ class CensusController extends Controller
         $data['code'] = substr(md5(rand()), 0, 4);
         $data['user_id'] = Auth::user()->id;
 
+        if ($request->has('photo')) {
+            $image = $request->file('photo');
+
+            $name     = Str::slug($data['name'] . ' ' . $data['last_name']) . '_' . time() . '.' . $image->getClientOriginalExtension();
+            $folder   = '/photos/';
+
+            $this->uploadOne($image, $folder, 'public', $name);
+            $data['photo'] = $name;
+        } else {
+            unset($data['photo']);
+        }
+
         $census = Census::create($data);
 
         if ($census) {
@@ -108,9 +123,21 @@ class CensusController extends Controller
         $data['code'] = substr(md5(rand()), 0, 4);
         $data['user_id'] = Auth::user()->id;
 
-        $census = Census::create($data);
+        $last_photo = $census->getRawOriginal('photo');
+        if ($request->has('photo')) {
+            $image = $request->file('photo');
 
-        if ($census) {
+            $name     = Str::slug($data['name'] . ' ' . $data['last_name']) . '_' . time() . '.' . $image->getClientOriginalExtension();
+            $folder   = '/photos/';
+
+            $this->uploadOne($image, $folder, 'public', $name, $last_photo);
+            $data['photo'] = $name;
+        } else {
+            $data['photo'] = $last_photo;
+        }
+
+        $success = $census->update($data);
+        if ($success) {
             return redirect()->route('panel.census.edit')->with("message", "Se ha modificado el padron corectamente.")
                 ->with("type", "success");
         }
