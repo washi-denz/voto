@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Census;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CensusController extends Controller
 {
@@ -39,31 +40,91 @@ class CensusController extends Controller
 
     public function create()
     {
-        //
+        // formulario de creacion
+        return view('panel.census.create');
     }
 
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name'      => 'required',
+            'last_name' => 'required',
+            'document'  => 'required|unique:censuses,document',
+            'grade'     => '',
+            'photo'     => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            //'doc_type'   => 'required',
+            //'document'    => 'required|unique:censuses,document,null,null,doc_type,' . $request->get('doc_type'),
+        ], [
+            'name.required'      => 'Este dato es requerido',
+            'last_name.required' => 'Este dato es requerido',
+            'document.required'  => 'Este dato es requerido',
+            'photo.image'        => 'Se requiere un archivo de imagen',
+            'photo.mimes'        => 'Se requiere un archivo de imagen (jpg, png, gif)',
+            'photo.max'          => 'El archivo tiene que ser menor a 2MB',
+        ]);
+
+        $data['code'] = substr(md5(rand()), 0, 4);
+        $data['user_id'] = Auth::user()->id;
+
+        $census = Census::create($data);
+
+        if ($census) {
+            return redirect()->route('panel.census.create')->with("message", "Se ha añadido al padron corectamente.")
+                ->with("type", "success");
+        }
+        return redirect()->back()->withInput()->with("message", "Algo ha salido mal, vuelva a intentar mas tarde.")
+            ->with("type", "error");
     }
 
-    public function show($id)
+    public function show(Census $census)
     {
-        //
+        return view('panel.census.show', ['census' => $census]);
     }
 
-    public function edit($id)
+    public function edit(Census $census)
     {
-        //
+        return view('panel.census.edit', ['census' => $census]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Census $census)
     {
-        //
+        $data = $request->validate([
+            'name'      => 'required',
+            'last_name' => 'required',
+            'document'  => 'required|unique:censuses,document,null,id',
+            'grade'     => '',
+            'photo'     => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            //'doc_type'   => 'required',
+            //'document'    => 'required|unique:censuses,document,null,null,doc_type,' . $request->get('doc_type'),
+        ], [
+            'name.required'      => 'Este dato es requerido',
+            'last_name.required' => 'Este dato es requerido',
+            'document.required'  => 'Este dato es requerido',
+            'photo.image'        => 'Se requiere un archivo de imagen',
+            'photo.mimes'        => 'Se requiere un archivo de imagen (jpg, png, gif)',
+            'photo.max'          => 'El archivo tiene que ser menor a 2MB',
+        ]);
+
+        $data['code'] = substr(md5(rand()), 0, 4);
+        $data['user_id'] = Auth::user()->id;
+
+        $census = Census::create($data);
+
+        if ($census) {
+            return redirect()->route('panel.census.edit')->with("message", "Se ha modificado el padron corectamente.")
+                ->with("type", "success");
+        }
+        return redirect()->back()->withInput()->with("message", "Algo ha salido mal, vuelva a intentar mas tarde.")
+            ->with("type", "error");
     }
 
-    public function destroy($id)
+    public function destroy(Census $census)
     {
-        //
+        if ($census->delete()) {
+            return redirect()->route('panel.census.index')->with("message", "Se ha eliminado del padron corectamente.")
+                ->with("type", "success");
+        }
+        return redirect()->back()->withInput()->with("message", "Algo ha salido mal, vuelva a intentar mas tarde.")
+            ->with("type", "error");
     }
 }
