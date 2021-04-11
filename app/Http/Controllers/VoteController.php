@@ -35,9 +35,11 @@ class VoteController extends Controller
 
                 return redirect()->route('portal.vote.document'); 
             }
-            return redirect()->back()->with(['message'=>'Atención!!! Ud ya sufragó, si hay error contacte con la Comisión Electoral.','code'=>$code,]);
+            return redirect()->back()->with(["message"=>"Atención!!! Ud ya sufragó, si hay error contacte con la Comisión Electoral.","code"=>$code,])
+                                     ->with("type","warning");
         }
-        return redirect()->back()->with(['message'=>'Su clave es INVÁLIDA, si persiste el problema contacte con la Comisión Electoral.','code'=>$code]);
+        return redirect()->back()->with(["message"=>"Su clave es INVÁLIDA, si persiste el problema contacte con la Comisión Electoral.","code"=>$code])
+                                 ->with("type","danger");
     
     }
 
@@ -67,7 +69,8 @@ class VoteController extends Controller
                                                     ->get();
                 return view('portal.vote.selection',$datos);
             }
-            return redirect()->route('portal.vote.document')->with(['message'=>'Su DNI es incorrecto,intentalo de nuevo.','dni'=>$dni]);
+            return redirect()->route('portal.vote.document')->with(["message"=>"Su DNI es incorrecto,intentalo de nuevo.","dni"=>$dni])
+                                                            ->with("type","danger");
         }
         return redirect()->route('portal.vote.index');
     
@@ -83,7 +86,8 @@ class VoteController extends Controller
             if(!empty($candidate_id)){
                 return view('portal.vote.confirm',['candidate_id'=>$candidate_id]);
             }
-            return redirect()->route('portal.vote.document')->with('message','Elija un candidato...,vuelva a insertar su DNI.');
+            return redirect()->route('portal.vote.document')->with("message","Elija un candidato...,vuelva a insertar su DNI.")
+                                                            ->with("type","info");
         }
         return redirect()->route('portal.vote.index');
         
@@ -119,9 +123,11 @@ class VoteController extends Controller
                 $request->session()->forget('code');
                 $request->session()->forget('users_id');
 
-                return redirect()->route('portal.vote.index')->with("message","...EXITO...");
+                return redirect()->route('portal.vote.index')->with("message","¡¡ FELICIDADES !! SU VOTO SE REALIZÓ CON ÉXITO")
+                                                             ->with("type","success");
             }
-            return redirect()->back()->withInput()->with("message", "Algo ha salido mal, vuelva a intentar mas tarde.");
+            return redirect()->back()->withInput()->with("message", "Algo ha salido mal, vuelva a intentar mas tarde.")
+                                                  ->with("type","danger");
 
         }
         return redirect()->route('portal.vote.index');

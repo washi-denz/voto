@@ -26,13 +26,23 @@ Voto Electrónico Elección Municipio Escolar 2021
                 <label for="code" class="text-gray-100 text-xs font-light mb-4 block">Para emitir su <strong class="border-b-2 border-yellow-300">voto</strong> ,Ingrese su <strong class="border-b-2 border-yellow-300">código</strong> de votación:</label>
                 <input type="text" name="code" id="code" value="@if(Session::has('code')) {{ Session::get('code') }} @endif" class="focus:outline-none bg-indigo-400 bg-opacity-20 py-4 px-4 mb-6 mx-auto md:mx-0 text-xl text-center md:text-left text-indigo-50 text-opacity-70 placeholder-indigo-200  font-mono block" placeholder="Ingrese su código" autocomplete="off">
                 @if(Session::has('message'))
-                <p style="background:yellow;color:green; border:1px dotted green;">{{ Session::get('message') }}</p>
+
+                    @if(Session::get('type') == 'success')
+                        @include('portal.components.alert.success',['message'=>Session::get('message')])
+                    @endif
+
+                    @if(Session::get('type') == 'danger')
+                        @include('portal.components.alert.danger',['message'=>Session::get('message')])
+                    @endif
+
+                    @if(Session::get('type') == 'warning')
+                        @include('portal.components.alert.warning',['message'=>Session::get('message')])
+                    @endif
+                    
                 @endif
                 <button type="submit" class="focus:outline-none transition duration-500 w-32 py-2 px-2 font-semibold text-gray-200 bg-indigo-900 hover:bg-indigo-800 ring-2 ring-gray-200 m-2">Ingresar</button>
             </form>
         </div>
     </div>
-    
-</div>
-
+ 
 @endsection
