@@ -19,7 +19,10 @@
     <style>
         html{
             min-height:100%;
-            position: relative;
+            position:relative;
+        }
+        .selection input[type="submit"]{
+            display:none;
         }
     </style>
 </head>
