@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\CensusController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VoteController;
@@ -22,6 +23,7 @@ use App\Http\Controllers\VoteController;
 Route::prefix('panel')->name('panel.')->group(function () {
     Route::resource('/', AdminController::class)->middleware('auth')->only(['index']);
     Route::resource('/census', CensusController::class)->middleware('auth');
+    Route::resource('/candidate', CandidateController::class)->middleware('auth');
 });
 
 
