@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Candidate;
+use App\Models\Census;
 use App\Traits\UploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -41,13 +42,13 @@ class CandidateController extends Controller
         return view('panel.candidate.index', ['candidates' => $candidates]);
     }
 
-    public function create()
+    public function create(Census $census)
     {
         // formulario de creacion
-        return view('panel.candidate.create');
+        return view('panel.candidate.create',['census' => $census]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request,Census $census)
     {
         $data = $request->validate([
             'party_name' => 'required',
@@ -76,8 +77,8 @@ class CandidateController extends Controller
             $data['users_id'] = $user->id; 
 
         } else {
-            //unset($data['logo']);
-            $data['logo'] = 'default.png';
+            unset($data['logo']);
+            //$data['logo'] = 'default.png';
         }
 
         $candidate = Candidate::create($data);
@@ -146,5 +147,36 @@ class CandidateController extends Controller
         }
         return redirect()->back()->withInput()->with("message", "Algo ha salido mal, vuelva a intentar mas tarde.")
             ->with("type", "error");
+    }
+
+    public function data_census(Request $request)
+    {   
+        $data = $request->validate(
+            [
+                'document' => 'required'
+            ],
+            [
+                'document.required' => 'Este dato es requerido.'
+            ]
+        );
+
+        $census = Census::where('document','=',$data['document'])->first();
+
+        if($census){
+
+            $candidate = Candidate::where('census_id','=',$census['id'])->get();
+
+            if(!(count($candidate) == 1)){
+                //foto
+                $census['photo'] = ($census['photo'] != 'default.png' )? 'storage/photos/'.$census['photo']:'images/default/photo.png';
+                return view('panel.candidate.create',compact('census'));    
+            }
+            return redirect()->route('panel.candidate.create')->with("message","El candidato ya existe.")
+            ->with("type", "error");     
+
+        }
+        return redirect()->route('panel.candidate.create')->with("message","El DNI no existe en el padrón electoral")
+            ->with("type", "error"); 
+        
     }
 }

@@ -11,8 +11,15 @@
 </div>
 
 <h3 class="text-lg font-medium">1. Para crear un candidato : Ingrese el DNI del candidato</h3>
-<form action="route('panel.candidate.document')" method="POST">
-    DNI:      <input type="text" name="document"><br>
+@if(Session::has('message'))
+    <div class="text-blue-400">{{ Session::get('message') }}</div>
+@endif
+<form action="{{ route('panel.candidate.create.data_census') }}" method="POST">
+    @csrf
+    DNI:   <input type="text" name="document" value="{{ isset($census->document)? $census->document:'' }}"><br>
+            @error('document')
+            <small class="text-red-400">{{ $message }}</small><br>
+            @enderror
     <button type="submit" class="bg-blue-400 text-white p-2 m-2">Seleccionar candidato</button>
 </form>
     
@@ -20,11 +27,14 @@
     @csrf
     Nombre:   <input type="text" name="name" value="{{ isset($census->name)? $census->name:'' }}" class="bg-gray-100" disabled><br>
     Apellidos:<input type="text" name="last_name" value="{{ isset($census->name)? $census->last_name:'' }}" class="bg-gray-100" disabled><br>
-    Foto:     mostrar...<br>
-<form action="{{ route('panel.candidate.store') }}" method="POST" enctype="multipart/form-data">
+    Foto:     mostrar...
+    @if(isset($census->photo))
+    <img src="{{ asset( $census->photo ) }}" alt="" class="w-36 h-36">
+    @endif
+    <br>
+<form action="{{ route('panel.candidate.store',$census) }}" method="POST" enctype="multipart/form-data">
     @csrf
-                        <input type="hidden" name="users_id" value="1">
-                        <input type="hidden" name="census_id" value="3">
+                        <input type="hidden" name="census_id" value="{{ isset($census->id)? $census->id:0 }}">
                         @error('census_id')
                         <small class="text-red-400">{{ $message }}</small><br>
                         @enderror
