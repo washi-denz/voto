@@ -9,6 +9,9 @@
     <div class="bg-white border-b border-gray-300">
         <h4 class="text-2xl text-gray-600 inline-block">LISTA DE CANDIDATOS</h4>
         <a href="{{ route('panel.candidate.create') }}" class="bg-green-400 p-2">Agregar</a>
+        @if(Session::has('message'))
+        <div class="text-blue-400">{{ Session::get('message') }}</div>
+        @endif
     </div>
     <div class="bg-white my-6">
         <table class="border-collapse w-full table-auto">

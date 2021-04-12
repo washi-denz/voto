@@ -6,6 +6,7 @@ use App\Models\Candidate;
 use App\Traits\UploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class CandidateController extends Controller
 {
@@ -51,7 +52,7 @@ class CandidateController extends Controller
         $data = $request->validate([
             'party_name' => 'required',
             'census_id'  => 'required|exists:censuses,id',
-            'logo'       => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'logo'       => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ], [
             'party_name.required' => 'Se requiere un nombre de partido',
             'census_id.required'  => 'Se requiere que seleccione un candidato',
@@ -61,6 +62,8 @@ class CandidateController extends Controller
             'logo.max'            => 'El archivo tiene que ser menor a 2MB',
         ]);
 
+        $user = Auth::user();
+
         if ($request->has('logo')) {
             $image = $request->file('logo');
 
@@ -68,15 +71,19 @@ class CandidateController extends Controller
             $folder   = '/logos/';
 
             $this->uploadOne($image, $folder, 'public', $name);
-            $data['logo'] = $name;
+
+            $data['logo']     = $name;
+            $data['users_id'] = $user->id; 
+
         } else {
-            unset($data['logo']);
+            //unset($data['logo']);
+            $data['logo'] = 'default.png';
         }
 
         $candidate = Candidate::create($data);
 
         if ($candidate) {
-            return redirect()->route('panel.candidate.create')->with("message", "Se ha añadido el candidato corectamente.")
+            return redirect()->route('panel.candidate.index')->with("message", "Se ha añadido el candidato correctamente.")
                 ->with("type", "success");
         }
         return redirect()->back()->withInput()->with("message", "Algo ha salido mal, vuelva a intentar mas tarde.")
