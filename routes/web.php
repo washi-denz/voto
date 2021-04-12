@@ -22,7 +22,7 @@ use App\Http\Controllers\VoteController;
 // ADMIN
 Route::prefix('panel')->name('panel.')->group(function () {
     Route::resource('/', AdminController::class)->middleware('auth')->only(['index']);
-    Route::resource('/census', CensusController::class)->middleware('auth');
+    Route::resource('/census', CensusController::class)->parameters(['census' => 'census'])->middleware('auth');
     Route::resource('/candidate', CandidateController::class)->middleware('auth');
 });
 
