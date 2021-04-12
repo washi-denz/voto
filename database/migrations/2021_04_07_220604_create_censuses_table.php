@@ -22,7 +22,7 @@ class CreateCensusesTable extends Migration
             $table->string('group')->nullable();
             $table->string('name');
             $table->string('last_name');
-            $table->string('photo')->default('default.png');
+            $table->string('photo')->nullable();
             $table->boolean('condition')->default(false);
 
             $table->foreignId('users_id')->constrained(); //->references('id')->on('users')->onDelete('cascade');

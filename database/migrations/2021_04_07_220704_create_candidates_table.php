@@ -16,10 +16,10 @@ class CreateCandidatesTable extends Migration
         Schema::create('candidates', function (Blueprint $table) {
             $table->id();
 
-            $table->string('logo');
+            $table->string('logo')->nullable();
             $table->string('party_name');
-            $table->foreignId('census_id')->constrained(); //->references('id')->on('census')->onDelete('cascade');
-            $table->foreignId('users_id')->constrained(); //->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('census_id')->constrained();
+            $table->foreignId('users_id')->constrained();
 
             $table->timestamps();
         });
