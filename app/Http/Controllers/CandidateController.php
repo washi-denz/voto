@@ -19,7 +19,9 @@ class CandidateController extends Controller
             'census_id',
         ];
 
-        $censuses = Candidate::select('*'); // use join
+        //$censuses = Candidate::select('*'); // use join
+        $censuses = Candidate::select('*')->join('censuses','candidates.census_id','=','censuses.id');
+
         if ($request->has('filter') && in_array($request->filter, $columns)) {
             $filter = trim($request->filter);
             $order  = ($request->has('order') && $request->order == 'asc') ? 'asc' : 'desc';

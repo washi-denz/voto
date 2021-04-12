@@ -8,7 +8,7 @@
         <h4 class="text-2xl text-gray-600">FORM CREATE CANDIDATE</h4>
     </div>
     <div class="bg-white my-6">
-
+        <a href="{{ route ('panel.candidate.index') }}" class="text-blue-400 cursor-pointer">Cancelar</a>
     </div>
 </div>
 @endsection
