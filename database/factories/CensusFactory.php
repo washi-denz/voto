@@ -24,13 +24,13 @@ class CensusFactory extends Factory
     {
         return [
             'document'  => $this->faker->randomNumber(8),
-            'code'      => $this->faker->randomNumber(4),
+            'code'      => substr(strtoupper(md5(rand())), 0, 4),
             'grade'     => $this->faker->randomElement(['1ro', '2do', '3ro', '4to', '5to', '6to']),
-            'group'     => $this->faker->randomElement(['1', '2', '3']),
+            'group'     => $this->faker->randomElement(['Grupo 01', 'Grupo 02', 'Grupo 3']),
             'name'      => $this->faker->name(),
             'last_name' => $this->faker->lastName . ' ' . $this->faker->lastName,
-            //'photo'     => $this->faker->username,
-            //'condition' => $this->faker->username,
+            //'photo'     => $this->faker->randomElement(['avatar01.png','avatar02.png']),
+            //'condition' => false,
             'users_id'  => User::inRandomOrder()->value('id'),
         ];
     }
