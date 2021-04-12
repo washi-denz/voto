@@ -66,8 +66,8 @@ class CensusController extends Controller
             'photo.max'          => 'El archivo tiene que ser menor a 2MB',
         ]);
 
-        $data['code'] = substr(md5(rand()), 0, 4);
-        $data['user_id'] = Auth::user()->id;
+        $data['code'] = strtoupper(substr(md5(rand()), 0, 4));
+        $data['users_id'] = Auth::user()->id;
 
         if ($request->has('photo')) {
             $image = $request->file('photo');
@@ -106,11 +106,9 @@ class CensusController extends Controller
         $data = $request->validate([
             'name'      => 'required',
             'last_name' => 'required',
-            'document'  => 'required|unique:censuses,document,null,id',
+            'document'  => 'required|unique:censuses,document,' . $census->id,
             'grade'     => '',
             'photo'     => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            //'doc_type'   => 'required',
-            //'document'    => 'required|unique:censuses,document,null,null,doc_type,' . $request->get('doc_type'),
         ], [
             'name.required'      => 'Este dato es requerido',
             'last_name.required' => 'Este dato es requerido',
@@ -119,14 +117,12 @@ class CensusController extends Controller
             'photo.mimes'        => 'Se requiere un archivo de imagen (jpg, png, gif)',
             'photo.max'          => 'El archivo tiene que ser menor a 2MB',
         ]);
-
-        $data['code'] = substr(md5(rand()), 0, 4);
-        $data['user_id'] = Auth::user()->id;
+        //$data['code'] = strtoupper(substr(md5(rand()), 0, 4));
+        $data['users_id'] = Auth::user()->id;
 
         $last_photo = $census->getRawOriginal('photo');
         if ($request->has('photo')) {
             $image = $request->file('photo');
-
             $name     = Str::slug($data['name'] . ' ' . $data['last_name']) . '_' . time() . '.' . $image->getClientOriginalExtension();
             $folder   = '/photos/';
 
@@ -138,7 +134,7 @@ class CensusController extends Controller
 
         $success = $census->update($data);
         if ($success) {
-            return redirect()->route('panel.census.edit')->with("message", "Se ha modificado el padron corectamente.")
+            return redirect()->route('panel.census.edit', $census)->with("message", "Se ha modificado el padron corectamente.")
                 ->with("type", "success");
         }
         return redirect()->back()->withInput()->with("message", "Algo ha salido mal, vuelva a intentar mas tarde.")
