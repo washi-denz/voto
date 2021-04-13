@@ -22,7 +22,8 @@ class CandidateController extends Controller
         ];
 
         //$censuses = Candidate::select('*'); // use join
-        $censuses = Candidate::select('*')->join('censuses','candidates.census_id','=','censuses.id');
+        $censuses = Candidate::select('candidates.id','candidates.logo','candidates.party_name','candidates.census_id','censuses.document','censuses.name','censuses.last_name','censuses.photo')
+                                    ->join('censuses','candidates.census_id','=','censuses.id');
 
         if ($request->has('filter') && in_array($request->filter, $columns)) {
             $filter = trim($request->filter);
@@ -98,6 +99,9 @@ class CandidateController extends Controller
 
     public function edit(Candidate $candidate)
     {
+        $census = Census::where('id',$candidate['census_id'])->get();
+        $candidate->census = $census[0];
+
         return view('panel.candidate.edit', ['candidate' => $candidate]);
     }
 
@@ -132,7 +136,7 @@ class CandidateController extends Controller
         $success = $candidate->update($data);
 
         if ($success) {
-            return redirect()->route('panel.candidate.edit')->with("message", "Se ha modificado el candidato corectamente.")
+            return redirect()->route('panel.candidate.edit',$candidate)->with("message", "Se ha modificado el candidato corectamente.")
                 ->with("type", "success");
         }
         return redirect()->back()->withInput()->with("message", "Algo ha salido mal, vuelva a intentar mas tarde.")
@@ -166,9 +170,7 @@ class CandidateController extends Controller
 
             $candidate = Candidate::where('census_id','=',$census['id'])->get();
 
-            if(!(count($candidate) == 1)){
-                //foto
-                $census['photo'] = ($census['photo'] != 'default.png' )? 'storage/photos/'.$census['photo']:'images/default/photo.png';
+            if(!(count($candidate) == 1)){            
                 return view('panel.candidate.create',compact('census'));    
             }
             return redirect()->route('panel.candidate.create')->with("message","El candidato ya existe.")

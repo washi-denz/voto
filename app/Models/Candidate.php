@@ -21,6 +21,13 @@ class Candidate extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function getLogoAttribute($value)
+    {
+        if ($value != null)
+            return url('storage/logos/' . $value);
+        return url('images/logos/default.png');
+    }
+
     public function getPhotoAttribute($value)
     {
         if ($value != null)
