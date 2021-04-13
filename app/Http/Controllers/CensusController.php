@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\CensusesImport;
 use App\Models\Census;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Traits\UploadTrait;
+use Maatwebsite\Excel\Facades\Excel;
+//use Maatwebsite\Excel\Excel;
 
 class CensusController extends Controller
 {
@@ -146,6 +149,31 @@ class CensusController extends Controller
         if ($census->delete()) {
             return redirect()->route('panel.census.index')->with("message", "Se ha eliminado del padron corectamente.")
                 ->with("type", "success");
+        }
+        return redirect()->back()->withInput()->with("message", "Algo ha salido mal, vuelva a intentar mas tarde.")
+            ->with("type", "error");
+    }
+
+    public function import_csv(Request $request)
+    {
+        $data = $request->validate([
+            'archive_csv'     => 'required|file|max:2048',
+        ], [
+            'archive_csv.required' => 'Se requiere de un archivo CSV',
+            'archive_csv.file'     => 'Se requiere de un archivo CSV',
+            'archive_csv.mimes'    => 'Se requiere de un archivo CSV',
+            'archive_csv.max'      => 'El archivo tiene que ser menor a 2MB',
+        ]);
+
+        if ($request->has('archive_csv')) {
+            $csv = $request->file('archive_csv');
+            $name     = 'census-' . time() . '.csv';
+            $folder   = '/files/';
+            if ($this->uploadOne($csv, $folder, 'public', $name)) {
+                Excel::import(new CensusesImport, $folder . $name, 'public');
+                return redirect()->route('panel.census.create')->with("message", "Se ha insertado los datos correctamente.")
+                    ->with("type", "success");
+            }
         }
         return redirect()->back()->withInput()->with("message", "Algo ha salido mal, vuelva a intentar mas tarde.")
             ->with("type", "error");

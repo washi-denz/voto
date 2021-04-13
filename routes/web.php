@@ -23,9 +23,10 @@ use App\Http\Controllers\VoteController;
 Route::prefix('panel')->name('panel.')->group(function () {
     Route::resource('/', AdminController::class)->middleware('auth')->only(['index']);
     Route::resource('/census', CensusController::class)->parameters(['census' => 'census'])->middleware('auth');
+    Route::post('/census/import', [CensusController::class, 'import_csv'])->middleware('auth')->name('census.import');
     Route::resource('/candidate', CandidateController::class)->middleware('auth');
-    
-    Route::post('/candidate/create', [CandidateController::class,'data_census'])->name('candidate.create.data_census')->middleware('auth');
+
+    Route::post('/candidate/create', [CandidateController::class, 'data_census'])->name('candidate.create.data_census')->middleware('auth');
 });
 
 

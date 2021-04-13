@@ -127,7 +127,54 @@
                 </div>
             </div>
         </form>
-
+        <form action="{{route('panel.census.import')}}" method="post" class="w-full lg:w-5/6 h-full"
+            enctype="multipart/form-data">
+            @csrf
+            <div class="bg-white shadow-md rounded pt-6 pb-8 mb-4 my-3 ">
+                <div class="grid sm:grid-cols-3 gap-4 mx-4 pb-4 pt-4">
+                    <div class="col-span-6">
+                        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                            for="archive_csv">
+                            Carga Masiva de electores
+                        </label>
+                        <div class="mb-2">
+                            <div
+                                class="relative h-40 rounded-lg border-dashed border-2  @error('archive_csv') border-red-500 @else border-gray-200 @enderror bg-white flex justify-center items-center hover:cursor-pointer">
+                                <div class="absolute">
+                                    <div class="flex flex-col items-center ">
+                                        <i class="fa fa-cloud-upload fa-3x text-gray-200"></i>
+                                        <span class="block text-gray-400 font-normal">Arrastra tu archivo aquí</span>
+                                        <span class="block text-gray-400 font-normal">o</span>
+                                        <span class="block text-blue-400 font-normal">Examine los archivos</span>
+                                        <span class="block text-red-400 font-normal" id="file_csv"></span>
+                                    </div>
+                                </div>
+                                <input type="file" class="h-full w-full opacity-0" accept=".csv,.xls,.xlsx"
+                                    id="archive_csv" name="archive_csv" required>
+                            </div>
+                            <div class="flex justify-between items-center text-gray-400">
+                                <span>Solo archivos de tipo: .csv, .xls, .xlsx</span>
+                                <span class="flex items-center">
+                                    <i class="fa fa-lock mr-1"></i> secure
+                                </span>
+                            </div>
+                        </div>
+                        @error('archive_csv')
+                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+                <div class="mx-4 pb-4">
+                    <div class="w-full text-right">
+                        <button type="submit"
+                            class="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-1 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline uppercase">
+                            <i class="fa fa-save"></i>
+                            Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 @endsection
