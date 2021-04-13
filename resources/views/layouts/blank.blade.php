@@ -13,8 +13,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <!-- Custom JS -->
-    <script src="{{ asset('js/custom.js') }}"></script>
 </head>
 
 <body class="font-sans antialiased">
@@ -23,7 +21,8 @@
         @include('layouts.navigate')
         {{$slot}}
     </main>
-
+    <!-- Custom JS -->
+    <script src="{{ asset('js/custom.js') }}"></script>
 </body>
 
 </html>

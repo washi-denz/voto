@@ -13,8 +13,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <!-- Custom JS -->
-    <script src="{{ asset('js/custom.js') }}"></script>
 </head>
 
 <body class="font-sans antialiased">
@@ -28,7 +26,8 @@
             </main>
         </div>
     </div>
-
+    <!-- Custom JS -->
+    <script src="{{ asset('js/custom.js') }}"></script>
 </body>
 
 </html>
