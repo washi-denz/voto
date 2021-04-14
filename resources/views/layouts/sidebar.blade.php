@@ -20,7 +20,8 @@
                 <span class="flex font-medium text-sm text-gray-400 px-4 mt-4 uppercase">Elecciones</span>
             </li>
             <li class="my-px">
-                <a href="#" class="flex flex-row items-center h-12 px-4 rounded-lg text-gray-600 hover:bg-gray-100">
+                <a href="{{route('panel.vote.index')}}"
+                    class="flex flex-row items-center h-12 px-4 rounded-lg text-gray-600 hover:bg-gray-100">
                     <span class="flex items-center justify-center text-lg text-gray-400">
                         <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
