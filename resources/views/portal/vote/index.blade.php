@@ -21,10 +21,20 @@ Voto Electrónico Elección Municipio Escolar 2021
             <!--/title big-->
         </div>
         <div class="px-3 text-center md:text-left">
-            <form action="{{ route('vote.store') }}" method="POST">
+            <form action="{{ route('portal.vote.store') }}" method="POST">
                 @csrf
-                <label for="code" class="text-gray-100 text-xs font-light mb-4 block">Para emitir su <strong class="border-b-2 border-yellow-300">voto</strong> ,Ingrese su <strong class="border-b-2 border-yellow-300">código</strong> de votación:</label>
-                <input type="text" name="code" id="code" value="@if(Session::has('code')) {{ Session::get('code') }} @endif" class="focus:outline-none bg-indigo-400 bg-opacity-20 py-4 px-4 mb-6 mx-auto md:mx-0 text-xl text-center md:text-left text-indigo-50 text-opacity-70 placeholder-indigo-200  font-mono block" placeholder="Ingrese su código" autocomplete="off">
+
+                <label for="document" class="text-gray-100 text-xs font-light mb-4 block">Para emitir su <strong class="border-b-2 border-yellow-300">voto</strong> : Ingrese su <strong class="border-b-2 border-yellow-300">DNI</strong> y <strong class="border-b-2 border-yellow-300">Código</strong> de votación</label>
+                <input type="text" name="document" id="document" value="{{ old('document') }}" class="focus:outline-none bg-indigo-400 bg-opacity-20 py-4 px-4 mb-6 mx-auto md:mx-0 text-xl text-center md:text-left text-indigo-50 text-opacity-70 placeholder-indigo-200  font-mono block" placeholder="Ingrese su DNI" autocomplete="off" required>        
+                @error('code')
+                <small class="text-red-400">{{ $message }}</small>
+                @enderror
+            
+                <input type="password" name="code" id="code" value="{{ old('code') }}" class="focus:outline-none bg-indigo-400 bg-opacity-20 py-4 px-4 mb-6 mx-auto md:mx-0 text-xl text-center md:text-left text-indigo-50 text-opacity-70 placeholder-indigo-200  font-mono block" placeholder="Ingrese su código" autocomplete="off" required>
+                @error('code')
+                <small class="text-red-400">{{ $message }}</small>
+                @enderror
+
                 @if(Session::has('message'))
 
                     @if(Session::get('type') == 'success')
@@ -40,6 +50,7 @@ Voto Electrónico Elección Municipio Escolar 2021
                     @endif
                     
                 @endif
+
                 <button type="submit" class="focus:outline-none transition duration-500 w-32 py-2 px-2 font-semibold text-gray-200 bg-indigo-900 hover:bg-indigo-800 ring-2 ring-gray-200 m-2">Ingresar</button>
             </form>
         </div>

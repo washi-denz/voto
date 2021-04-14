@@ -31,10 +31,15 @@ Route::prefix('panel')->name('panel.')->group(function () {
 
 
 // PORTAL
-Route::get('/home', function () {
-    return view('index');
+Route::get('/', [VoteController::class,'index'])->name('portal.home');
+
+Route::prefix('portal')->name('portal.')->group(function(){
+    Route::resource('/vote',VoteController::class);
+    Route::get('/voto/confirm',[VoteController::class,'show_confirm'])->name('show.confirm');
+    Route::post('/voto/confirm/{id}',[VoteController::class,'update_confirm'])->name('update.confirm');
 });
 
+/*
 Route::get('/', [VoteController::class, 'index'])->name('portal.vote.index');
 Route::resource('vote', VoteController::class);
 
@@ -47,5 +52,7 @@ Route::put('/seleccion', [VoteController::class, 'selection_show'])->name('porta
 Route::get('/confirmar', [VoteController::class, 'confirm'])->name('portal.vote.confirm');
 Route::post('/confirmar', [VoteController::class, 'confirm'])->name('portal.vote.confirm');
 Route::post('/confirmar/{id}', [VoteController::class, 'confirm_update'])->name('portal.vote.confirm.update');
+*/
+
 
 require __DIR__ . '/auth.php';

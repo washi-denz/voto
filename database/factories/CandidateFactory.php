@@ -24,7 +24,7 @@ class CandidateFactory extends Factory
     public function definition()
     {
         return [
-            'logo'       => $this->faker->randomElement(['a.png', 'b.png', 'c.png']),
+            //'logo'       => $this->faker->randomElement(['a.png', 'b.png', 'c.png']),
             'party_name' => $this->faker->text(50),
             'census_id'  => Census::inRandomOrder()->value('id'),
             'users_id'   => User::inRandomOrder()->value('id'),
