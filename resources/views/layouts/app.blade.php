@@ -13,6 +13,16 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <style>
+        aside{
+            transition:0.3s all;
+        }
+        aside.active{
+            margin-left:0rem;
+        }
+    </style>
+    
 </head>
 
 <body class="font-sans antialiased">

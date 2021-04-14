@@ -25,6 +25,7 @@
             display:none;
         }
     </style>
+    
 </head>
 
 <body class="bg-indigo-900 m-0 mb-12 pb-12">
