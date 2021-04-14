@@ -133,4 +133,5 @@ class VoteController extends Controller
         return redirect()->route('portal.vote.index');
 
     }
+
 }

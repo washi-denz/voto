@@ -6,14 +6,15 @@
 
 <!-- washi  -->
 <div class="py-0">
-    <div class="bg-white border-b border-gray-300">
-        <h4 class="text-2xl text-gray-600 inline-block">LISTA DE CANDIDATOS</h4>
-        <a href="{{ route('panel.candidate.create') }}" class="bg-green-400 p-2">Agregar</a>
-        @if(Session::has('message'))
-        <div class="text-blue-400">{{ Session::get('message') }}</div>
-        @endif
+    <div class="bg-white border-b border-gray-300 pb-5">
+        <h4 class="text-2xl text-gray-600">LISTA DE CANDIDATOS <a href="{{ route('panel.candidate.create') }}"
+                class="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-1 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline uppercase text-sm">Nuevo candidato</a>
+        </h4>
     </div>
     <div class="bg-white my-6">
+
+        @include('panel.components.message')
+
         <table class="border-collapse w-full table-auto">
             <thead>
                 <tr class="bg-gray-200 text-gray-600 text-sm leading-normal">

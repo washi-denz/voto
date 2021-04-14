@@ -174,7 +174,7 @@ class CandidateController extends Controller
                 return view('panel.candidate.create',compact('census'));    
             }
             return redirect()->route('panel.candidate.create')->with("message","El candidato ya existe.")
-            ->with("type", "error");     
+                ->with("type", "success");     
 
         }
         return redirect()->route('panel.candidate.create')->with("message","El DNI no existe en el padrón electoral")

@@ -32,6 +32,6 @@ class Candidate extends Model
     {
         if ($value != null)
             return url('storage/photos/' . $value);
-        return url('images/logos/default.png');
+        return url('images/photos/default.png');
     }
 }

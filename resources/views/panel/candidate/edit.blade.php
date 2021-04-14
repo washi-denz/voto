@@ -9,6 +9,7 @@
             {{$candidate->census->last_name}}</h3>
         <hr class="bg-gradient-to-r from-red-300 to-white h-1">
     </div>
+    
     <div class="bg-white my-6 grid justify-items-center">
 
         @include('panel.components.message')
