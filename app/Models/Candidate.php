@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Candidate extends Model
 {
@@ -19,6 +20,16 @@ class Candidate extends Model
     function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    function census()
+    {
+        return $this->BelongsTo(Census::class);
+    }
+
+    function votes()
+    {
+        return $this->hasMany(Vote::class);
     }
 
     public function getLogoAttribute($value)
