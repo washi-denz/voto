@@ -45,14 +45,14 @@
                         class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5"
                         role="menu" aria-orientation="vertical" aria-labelledby="user-menu" style="display: none;">
                         <a href="{{route('panel.index')}}"
-                            class="px-3 py-2 text-xs flex items-center h-full hover:text-blue-600 hover:bg-gray-100 uppercase">
+                            class="px-3 py-2 text-sm flex items-center h-full hover:text-blue-600 hover:bg-gray-100">
                             <span>Panel</span>
                         </a>
                         <form action="{{route('logout')}}" method="post">
                             @csrf
                             <button type="submit"
-                                class="w-full focus:outline-none border-red-300 border-t-2 block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 uppercase font-bold">
-                                Cerrar Sesion
+                                class="w-full focus:outline-none border-gray-300 border-t block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-bold">
+                                Cerrar Sesión
                             </button>
                         </form>
                     </div>
