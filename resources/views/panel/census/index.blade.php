@@ -1,17 +1,14 @@
 @extends('layouts.app')
 
-@section('title','Padron Electoral')
+@section('title','Padron Electoral');
 
 @section('content')
 <div class="py-0">
-
-    <div class="absolute top-0 left-0 z-0 -mt-8 w-full bg-gray-100">
-        <h4 class="py-4 px-14 sm:ml-64 text-lg font-normal uppercase">
-            Lista de electores
-            <a href="{{route('panel.census.create')}}" class="border border-green-500 bg-green-500 text-white rounded-md px-3 py-2 m-1 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline uppercase text-xs">Registrar</a>
+    <div class="bg-white border-b border-gray-300 pb-5">
+        <h4 class="text-2xl text-gray-600">LISTA DE ELECTORES <a href="{{route('panel.census.create')}}"
+                class="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-1 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline uppercase text-sm">Registrar</a>
         </h4>
     </div>
-
     <div class="bg-white my-6 grid justify-items-center">
 
         @include('panel.components.message')
@@ -20,7 +17,7 @@
             <thead>
                 <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                     <th class="py-3 px-6 text-center hidden lg:table-cell">Nombre y Apellidos</th>
-                    <th class="py-3 px-6 text-center hidden lg:table-cell">DNI</th>
+                    <th class="py-3 px-6 text-center hidden lg:table-cell">Telefono</th>
                     <th class="py-3 px-6 text-center hidden lg:table-cell">Codigo</th>
                     <th class="py-3 px-6 text-center hidden lg:table-cell">Estado de Voto</th>
                     <th class="py-3 px-6 text-center hidden lg:table-cell">Accion</th>
@@ -35,18 +32,38 @@
                         <span
                             class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Nombres
                             y Apellidos</span>
-                        <div class="flex justify-center lg:inline-flex">
-                            <img class="w-6 h-6 rounded-full border-gray-200 border" src="{{$census->photo}}" />
+
+                        <div class="">
+                            <div class="flex flex-col items-center w-full  rounded-3xl lg:flex-row">
+                                <div class="relative flex border-2 border-gray-400 rounded-lg">
+                                    <div class="object-contain flex items-center overflow-hidden w-24 h-24 bg-white">
+                                        <img src="{{asset($census->photo)}}"
+                                            alt="{{$census->name}} {{$census->last_name}}" />
+                                    </div>
+                                </div>
+                                <div class="flex flex-col space-y-4 ml-0 lg:ml-4">
+                                    <div class="flex flex-col items-center lg:items-start">
+                                        <h2 class="text-xl font-medium">
+                                            {{$census->name}}
+                                            {{$census->last_name}}
+                                        </h2>
+                                        <p class="text-base font-medium text-gray-400">
+                                            DNI: {{$census->document}}
+                                        </p>
+                                        <p class="text-base font-medium text-gray-400">
+                                            {{$census->grade}}
+                                            {{$census->group}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <span class="font-medium">
-                            {{$census->name}} {{$census->last_name}}
-                        </span>
                     </td>
                     <td
                         class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block relative lg:table-cell lg:static lg:border-gray-200">
                         <span
-                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">DNI</span>
-                        {{$census->document}}
+                            class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Telefono</span>
+                        {{$census->phone}}
                     </td>
                     <td
                         class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block relative lg:table-cell lg:static lg:border-gray-200">
@@ -60,9 +77,10 @@
                             class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Estado
                             de Voto</span>
                         @if ($census->condition == false)
-                        <span class="bg-red-200 text-red-700 py-1 px-3 rounded-full text-xs">No Emitido</span>
+                        <span class="bg-red-200 text-red-700 py-1 px-3 rounded-full text-xs font-bold">No Emitido</span>
                         @else
-                        <span class="bg-green-200 text-green-700 py-1 px-3 rounded-full text-xs">Emitido</span>
+                        <span
+                            class="bg-green-200 text-green-700 py-1 px-3 rounded-full text-xs font-bold">Emitido</span>
                         @endif
                     </td>
                     <td
