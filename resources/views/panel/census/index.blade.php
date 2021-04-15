@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Padron Electoral');
+@section('title','Padron Electoral')
 
 @section('content')
 <div class="py-0">
