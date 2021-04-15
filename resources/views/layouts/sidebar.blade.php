@@ -1,6 +1,6 @@
 <div  x-data="{open:false}" @click.away="open=false">
     
-    <div @click="open=!open" class="fixed bg-green-600 text-green-50 text-center rounded-r-lg pl-5 pr-2 py-2 mt-1 top-20 left-0 block sm:hidden z-20 cursor-pointer">&#9776;</div>
+    <div @click="open=!open" class="fixed bg-gray-600 text-gray-50 text-center rounded-r-lg pl-5 pr-2 py-2 mt-2 top-20 left-0 block sm:hidden z-20 cursor-pointer">&#9776;</div>
 
     <aside
         class="fixed overflow-hidden -ml-80 sm:m-0 w-auto sm:w-72 z-10 h-screen pt-20 pl-3 sm:pl-0  bg-green-500 border-r border-green-300" :class="{'active':open}">

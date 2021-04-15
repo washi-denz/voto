@@ -1,13 +1,16 @@
 @extends('layouts.app')
 
-@section('title','Padron Electoral');
+@section('title','Padron Electoral')
 
 @section('content')
 <div class="py-0">
-    <div>
-        <h3 class="text-xl tracking-wide uppercase font-semibold">Registro de nuevo elector</h3>
-        <hr class="bg-gradient-to-r from-red-300 to-white h-1">
+
+    <div class="absolute top-0 left-0 z-0 -mt-8 w-full bg-gray-100">
+        <h4 class="py-4 px-14 sm:ml-64 text-lg font-normal uppercase">
+            Registro de nuevo elector
+        </h4>
     </div>
+    
     <div class="bg-white my-6 grid justify-items-center">
         @include('panel.components.message')
         <form action="{{route('panel.census.store')}}" method="post" class="w-full lg:w-5/6 h-full"
@@ -139,7 +142,7 @@
                         </label>
                         <div class="mb-2">
                             <div
-                                class="relative h-40 rounded-lg border-dashed border-2  @error('archive_csv') border-red-500 @else border-gray-200 @enderror bg-white flex justify-center items-center hover:cursor-pointer">
+                                class="relative bg-green-50 h-40 rounded-lg border-dashed border-2  @error('archive_csv') border-red-500 @else border-gray-200 @enderror bg-white flex justify-center items-center hover:cursor-pointer">
                                 <div class="absolute">
                                     <div class="flex flex-col items-center ">
                                         <i class="fa fa-cloud-upload fa-3x text-gray-200"></i>

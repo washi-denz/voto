@@ -1,15 +1,17 @@
 @extends('layouts.app')
 
-@section('title','Padron Electoral');
+@section('title','Padron Electoral')
 
 @section('content')
 <div class="py-0">
 
-    <div class="bg-white border-b border-gray-300 pb-5">
-        <h4 class="text-2xl text-gray-600">Crear nuevo candidato</h4>
+    <div class="absolute top-0 left-0 z-0 -mt-8 w-full bg-gray-100">
+        <h4 class="py-4 px-14 sm:ml-64 text-lg font-normal uppercase">
+            Crear nuevo candidato
+        </h4>
     </div>
-    
-    <div class="bg-white my-4 grid justify-items-center">
+
+    <div class="bg-white my-2 grid justify-items-center">
 
         @include('panel.components.message')
 

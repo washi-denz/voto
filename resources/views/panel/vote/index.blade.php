@@ -1,14 +1,16 @@
 @extends('layouts.app')
 
-@section('title','Padron Electoral');
+@section('title','Padron Electoral')
 
 @section('content')
 <div class="py-0">
-    <div class="bg-white border-b border-gray-300 pb-5">
-        <h4 class="text-2xl text-gray-600">
-            RESULTADO VOTACION
+
+    <div class="absolute top-0 left-0 z-0 -mt-8 w-full bg-gray-100">
+        <h4 class="py-4 px-14 sm:ml-64 text-lg font-normal uppercase">
+            Resultados de votación        
         </h4>
     </div>
+
     <div class="bg-white my-6 grid justify-items-center">
         <table class="border-collapse w-full table-auto">
             <thead>
@@ -53,7 +55,7 @@
                         class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block relative lg:table-cell lg:static lg:border-gray-200 lg:text-left">
                         <div class="mt-4 lg:mt-0">
                             <div class="bg-gray-400 w-full h-4 rounded-lg mt-2 overflow-hidden">
-                                <div class="bg-pink-400 h-full rounded-lg shadow-md"
+                                <div class="bg-green-400 h-full rounded-lg shadow-md"
                                     style="width: {{round( ((100/$total)*$candidate->votes->count()), 2)}}%"></div>
                             </div>
                             <p class="text-gray-600 text-center font-bold">

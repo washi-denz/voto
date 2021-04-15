@@ -33,7 +33,7 @@
 
        @include('layouts.sidebar')
 
-       <div class="col-span-10 absolute w-full mt-20">
+       <div class="col-span-10 absolute w-full mt-28">
             <main class="bg-white md:ml-72 max-auto px-8 py-5">
 
                 @yield('content')
