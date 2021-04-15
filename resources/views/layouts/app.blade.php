@@ -15,30 +15,31 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <style>
-        aside{
-            transition:0.3s all;
+        aside {
+            transition: 0.3s all;
         }
-        aside.active{
-            margin-left:0rem;
+
+        aside.active {
+            margin-left: 0rem;
         }
     </style>
-    
+
 </head>
 
 <body class="font-sans antialiased text-gray-800">
 
-     @include('layouts.navigate')
+    @include('layouts.navigate')
 
     <div class="grid grid-cols-12 relative">
 
-       @include('layouts.sidebar')
+        @include('layouts.sidebar')
 
-       <div class="col-span-10 absolute w-full mt-28">
+        <div class="col-span-10 absolute w-full mt-28">
             <main class="bg-white md:ml-72 max-auto px-8 py-5">
 
                 @yield('content')
-                
-           </main>
+
+            </main>
         </div>
     </div>
     <!-- Custom JS -->

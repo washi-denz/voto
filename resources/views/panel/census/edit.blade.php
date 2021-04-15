@@ -6,9 +6,13 @@
 <div class="py-0">
 
     <div class="absolute top-0 left-0 z-0 -mt-8 w-full bg-gray-100">
-        <h4 class="py-4 px-14 md:ml-64 text-lg font-normal uppercase">
-            Editar candidato | {{ $census->name }}  {{ $census->last_name }}        
-        </h4>
+        <<<<<<< HEAD <h4 class="py-4 px-14 md:ml-64 text-lg font-normal uppercase">
+            Editar candidato | {{ $census->name }} {{ $census->last_name }}
+            =======
+            <h4 class="py-4 px-14 sm:ml-64 text-lg font-normal uppercase">
+                Editar candidato | {{ $census->name }} {{ $census->last_name }}
+                >>>>>>> dev
+            </h4>
     </div>
 
     <div class="bg-white my-6 grid justify-items-center">
@@ -95,33 +99,54 @@
                         </div>
                         <div class="sm:col-span-2 col-span-4">
                             <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                                for="document">
-                                Numero Documento
-                            </label>
-                            <input
-                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border @error('document') border-red-500 @else border-gray-400 @enderror rounded py-3 px-4"
-                                id="document" name="document" type="text" placeholder="Numero de Documento"
-                                value="{{old('document',$census->document)}}" required>
-                            @error('document')
-                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        {{--<div class="sm:col-span-2 col-span-4">
-                            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                                 for="group">
                                 Grupo
                             </label>
                             <select
                                 class="appearance-none block w-full bg-grey-lighter text-grey-darker border @error('birthday') border-red-500 @else border-gray-400 @enderror text-grey-darker py-3 px-4 pr-8 rounded"
-                                id="group" name="group" required>
-                                <option value="A">A</option>
-                                <option value="B">B</option>
-                                <option value="C">C</option>
-                                <option value="D">D</option>
-                                <option value="E">E</option>
-                                <option value="F">F</option>
+                                id="group" name="group">
+                                <option value="" @if (old('group',$census->group)=='' ) selected @endif>Ninguno</option>
+                                <option value="A" @if (old('group',$census->group)=='A' ) selected @endif>A</option>
+                                <option value="B" @if (old('group',$census->group)=='B' ) selected @endif>B</option>
+                                <option value="C" @if (old('group',$census->group)=='C' ) selected @endif>C</option>
+                                <option value="D" @if (old('group',$census->group)=='D' ) selected @endif>D</option>
+                                <option value="E" @if (old('group',$census->group)=='E' ) selected @endif>E</option>
+                                <option value="F" @if (old('group',$census->group)=='F' ) selected @endif>F</option>
                             </select>
-                        </div>--}}
+                            @error('group')
+                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid sm:grid-cols-3 gap-4 mx-4 pb-4">
+                    <div class="sm:col-span-1 col-span-3"></div>
+                    <div class="sm:col-span-1 col-span-3">
+                        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                            for="document">
+                            Numero Documento
+                        </label>
+                        <input
+                            class="appearance-none block w-full bg-grey-lighter text-grey-darker border @error('document') border-red-500 @else border-gray-400 @enderror rounded py-3 px-4"
+                            id="document" name="document" type="text" placeholder="Numero de Documento"
+                            value="{{old('document',$census->document)}}" required>
+                        @error('document')
+                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="sm:col-span-1 col-span-3">
+                        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                            for="phone">
+                            Numero Celular
+                        </label>
+                        <input
+                            class="appearance-none block w-full bg-grey-lighter text-grey-darker border @error('phone') border-red-500 @else border-gray-400 @enderror rounded py-3 px-4"
+                            id="phone" name="phone" type="text" placeholder="Numero de celular"
+                            value="{{old('phone',$census->phone)}}" required>
+                        @error('phone')
+                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
 

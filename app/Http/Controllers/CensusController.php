@@ -58,6 +58,8 @@ class CensusController extends Controller
             'document'  => 'required|unique:censuses,document',
             'grade'     => '',
             'photo'     => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'phone'     => '',
+            'group'     => '',
             //'doc_type'   => 'required',
             //'document'    => 'required|unique:censuses,document,null,null,doc_type,' . $request->get('doc_type'),
         ], [
@@ -112,6 +114,8 @@ class CensusController extends Controller
             'document'  => 'required|unique:censuses,document,' . $census->id,
             'grade'     => '',
             'photo'     => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'phone'     => '',
+            'group'     => '',
         ], [
             'name.required'      => 'Este dato es requerido',
             'last_name.required' => 'Este dato es requerido',
