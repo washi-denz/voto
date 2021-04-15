@@ -25,7 +25,7 @@
     
 </head>
 
-<body class="font-sans antialiased">
+<body class="font-sans antialiased text-gray-800">
 
     @include('layouts.navigate')
 
