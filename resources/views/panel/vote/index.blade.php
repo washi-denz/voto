@@ -7,7 +7,7 @@
 
     <div class="absolute top-0 left-0 z-0 -mt-8 w-full bg-gray-100">
         <h4 class="py-4 px-14 sm:ml-64 text-lg font-normal uppercase">
-            Resultados de votación        
+            Resultados de votación
         </h4>
     </div>
 
@@ -30,8 +30,10 @@
                         <div class="bg-white">
                             <div class="flex flex-col items-center w-full bg-white rounded-3xl lg:flex-row">
                                 <div class="relative flex border-2 border-gray-400 rounded-lg">
-                                    <img class="w-auto h-24" src="{{asset($candidate->census->photo)}}"
-                                        alt="{{$candidate->census->name}} {{$candidate->census->last_name}}" />
+                                    <div class="object-contain flex items-center overflow-hidden w-24 h-24 bg-white">
+                                        <img src="{{asset($candidate->census->photo)}}"
+                                            alt="{{$candidate->census->name}} {{$candidate->census->last_name}}" />
+                                    </div>
                                     <img class="absolute w-12 h-12 right-0 bottom-0 rounded-full"
                                         src="{{asset($candidate->logo)}}" alt="{{$candidate->party_name}}">
                                 </div>
