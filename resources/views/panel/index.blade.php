@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Padron de Electores');
+@section('title','Padron de Electores')
 
 @section('content')
 
@@ -11,9 +11,9 @@
     <div class="container mx-auto lg:px-20 md:px-8 sm:px-16"> 
     
        <div class="absolute top-1/3 transform -translate-y-1/3 pl-3">
-            <h1 class="mb-4 font-thin text-indigo-800 font-mono text-4xl sm:text-6xl tracking-widest inline">Hola</h1><span class="text-lg">,</span>
-            <h2 class="mb-4 font-extrabold text-indigo-900 text-xl sm:text-3xl tracking-tight">Administrador</h2>
-            <p class="mb-4">Bienvenido a mi sitio web VOTO ELECTRÓNICO.</p>
+            <h1 class="mb-4 font-thin text-green-500 font-mono text-4xl sm:text-6xl tracking-widest inline">Hola</h1><span class="text-lg text-green-500">,</span>
+            <h2 class="mb-4 font-extrabold text-green-700 text-xl sm:text-3xl tracking-tight">Administrador</h2>
+            <p class="mb-4">Bienvenido</p>
         </div>
         <div class="absolute w-full sm:w-auto bottom-0 sm:bottom-10  text-xs sm:text-sm">
             <div class="flex justify-between sm:justify-start p-2">

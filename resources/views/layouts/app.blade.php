@@ -27,16 +27,18 @@
 
 <body class="font-sans antialiased text-gray-800">
 
-    @include('layouts.navigate')
+     @include('layouts.navigate')
 
-    <div class="grid grid-cols-12 h-screen relative">
+    <div class="grid grid-cols-12 relative">
 
-        @include('layouts.sidebar')
+       @include('layouts.sidebar')
 
-        <div class="col-span-10 absolute w-full mt-20">
+       <div class="col-span-10 absolute w-full mt-20">
             <main class="bg-white md:ml-72 max-auto px-8 py-5">
+
                 @yield('content')
-            </main>
+                
+           </main>
         </div>
     </div>
     <!-- Custom JS -->

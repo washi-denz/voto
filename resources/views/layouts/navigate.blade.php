@@ -3,9 +3,9 @@
         <div class="flex justify-between">
 
             <div class="logo flex items-center space-x-4 mr-10">
-                <img class="h-10" src="https://www.gstatic.com/analytics-suite/header/suite/v2/ic_data_studio.svg"
-                    alt="Lara">
-                <h1 class="text-gray-600 text-2xl">VOTO</h1>
+                <img class="h-10 w-11" src="{{ asset('images/vote/logo_chacaneque.png') }}"
+                    alt="IES Agropecuario Chacaneque">
+                <h1 class="text-gray-600 text-xs sm:text-2xl"><strong class="font-mono">ADMIN</strong> IES Agropecuario - Chacaneque</h1>
             </div>
             @auth
             <div class="menu flex justify-end items-center space-x-4">
