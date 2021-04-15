@@ -6,7 +6,7 @@
 <div class="py-0">
 
     <div class="absolute top-0 left-0 z-0 -mt-8 w-full bg-gray-100">
-        <h4 class="py-4 px-14 sm:ml-64 text-lg font-normal uppercase">
+        <h4 class="py-4 px-14 md:ml-64 text-lg font-normal uppercase">
             Lista de electores
             <a href="{{route('panel.census.create')}}" class="border border-green-500 bg-green-500 text-white rounded-md px-3 py-2 m-1 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline uppercase text-xs">Registrar</a>
         </h4>
