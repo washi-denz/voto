@@ -1,11 +1,13 @@
-<header class="bg-white shadow-md w-full fixed z-20 top-0 h-20">
+<header class="bg-white shadow-md w-full fixed z-20 top-0 h-20 overflow-hidden">
     <div class="max-auto px-8 py-5 bg-white">
         <div class="flex justify-between">
 
             <div class="logo flex items-center space-x-4 mr-10">
                 <img class="h-10 w-11" src="{{ asset('images/vote/logo_chacaneque.png') }}"
                     alt="IES Agropecuario Chacaneque">
-                <h1 class="text-gray-600 text-xs sm:text-2xl"><strong class="font-mono">ADMIN</strong> IES Agropecuario - Chacaneque</h1>
+                <h1 class="text-gray-600 text-sm sm:text-lg md:text-2xl"><strong class="font-mono">ADMIN</strong> IES
+                    Agropecuario
+                    - Chacaneque</h1>
             </div>
             @auth
             <div class="menu flex justify-end items-center space-x-4">

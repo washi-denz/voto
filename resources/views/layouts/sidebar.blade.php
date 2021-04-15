@@ -1,15 +1,18 @@
-<div  x-data="{open:false}" @click.away="open=false">
-    
-    <div @click="open=!open" class="fixed bg-gray-600 text-gray-50 text-center rounded-r-lg pl-5 pr-2 py-2 mt-2 top-20 left-0 block sm:hidden z-20 cursor-pointer">&#9776;</div>
-
+<div x-data="{open:false}" @click.away="open=false">
+    <div @click="open=!open"
+        class="fixed bg-gray-600 text-gray-50 text-center rounded-r-lg pl-5 pr-2 py-2 mt-2 top-20 left-0 block md:hidden z-20 cursor-pointer">
+        &#9776;
+    </div>
     <aside
-        class="fixed overflow-hidden -ml-80 sm:m-0 w-auto sm:w-72 z-10 h-screen pt-20 pl-3 sm:pl-0  bg-green-500 border-r border-green-300" :class="{'active':open}">
+        class="fixed overflow-hidden -ml-80 md:m-0 w-auto md:w-72 z-10 h-screen pt-20 pl-3 md:pl-0  bg-green-500 border-r border-green-300"
+        :class="{'active':open}">
         <div class="flex w-full p-4">
             <ul class="flex flex-col w-full">
                 <li class="my-px">
                     <a href="{{ route('panel.index') }}"
                         class="flex flex-row items-center h-12 px-4 rounded-lg text-green-600 group hover:bg-green-200">
-                        <span class="flex items-center justify-center text-lg text-green-300 group-hover:text-green-400">
+                        <span
+                            class="flex items-center justify-center text-lg text-green-300 group-hover:text-green-400">
                             <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
                                 <path
@@ -26,10 +29,12 @@
                 <li class="my-px">
                     <a href="{{route('panel.vote.index')}}"
                         class="flex flex-row items-center h-12 px-4 rounded-lg text-green-600 group hover:bg-green-200">
-                        <span class="flex items-center justify-center text-lg text-green-300 group-hover:text-green-400">
+                        <span
+                            class="flex items-center justify-center text-lg text-green-300 group-hover:text-green-400">
                             <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
-                                <path d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4">
+                                <path
+                                    d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4">
                                 </path>
                             </svg>
                         </span>
@@ -41,7 +46,8 @@
                 <li class="my-px">
                     <a href="{{route('panel.candidate.index')}}"
                         class="flex flex-row items-center h-12 px-4 rounded-lg text-green-600 group hover:bg-green-200">
-                        <span class="flex items-center justify-center text-lg text-green-300 group-hover:text-green-400">
+                        <span
+                            class="flex items-center justify-center text-lg text-green-300 group-hover:text-green-400">
                             <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
                                 <path
@@ -55,7 +61,8 @@
                 <li class="my-px">
                     <a href="{{route('panel.census.index')}}"
                         class="flex flex-row items-center h-12 px-4 rounded-lg text-green-600 group hover:bg-green-200">
-                        <span class="flex items-center justify-center text-lg text-green-300 group-hover:text-green-400">
+                        <span
+                            class="flex items-center justify-center text-lg text-green-300 group-hover:text-green-400">
                             <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
                                 <path
@@ -70,11 +77,14 @@
                     <span class="flex font-medium text-sm text-green-100 px-4 mt-4 uppercase">Administrador</span>
                 </li>
                 <li class="my-px">
-                    <a href="#" class="flex flex-row items-center h-12 px-4 rounded-lg text-green-600 group hover:bg-green-200">
-                        <span class="flex items-center justify-center text-lg text-green-300 group-hover:text-green-400">
+                    <a href="#"
+                        class="flex flex-row items-center h-12 px-4 rounded-lg text-green-600 group hover:bg-green-200">
+                        <span
+                            class="flex items-center justify-center text-lg text-green-300 group-hover:text-green-400">
                             <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
-                                <path d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4">
+                                <path
+                                    d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4">
                                 </path>
                             </svg>
                         </span>
