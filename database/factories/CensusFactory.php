@@ -30,6 +30,7 @@ class CensusFactory extends Factory
             'name'      => $this->faker->name(),
             'last_name' => $this->faker->lastName . ' ' . $this->faker->lastName,
             //'photo'     => $this->faker->randomElement(['avatar01.png','avatar02.png']),
+            'phone'     => $this->faker->phoneNumber,
             //'condition' => false,
             'users_id'  => User::inRandomOrder()->value('id'),
         ];

@@ -18,10 +18,11 @@ class CreateCensusesTable extends Migration
 
             $table->string('document', 12)->uniqid();
             $table->string('code', 4);
-            $table->string('grade')->nullable();
-            $table->string('group')->nullable();
+            $table->string('grade', 32)->nullable();
+            $table->string('group', 32)->nullable();
             $table->string('name');
             $table->string('last_name');
+            $table->string('phone', 16)->nullable();
             $table->string('photo')->nullable();
             $table->boolean('condition')->default(false);
 
