@@ -12,7 +12,7 @@ Voto Electrónico Elección Municipio Escolar 2021
         <div class="px-3">
             <!--tilte big-->
                 <div class="flex">
-                    <img src="{{ asset('images/vote/logo.png') }}" alt="" class="w-16 h-16 md:w-20 md:h-20">
+                    <img src="{{ asset('images/vote/logo_chacaneque.png') }}" alt="" class="w-16 h-16 md:w-20 md:h-20">
                     <div class="px-3">
                         <h1 class="text-gray-50 text-4xl font-medium uppercase">Voto electrónico</h1>
                         <p class="text-indigo-200 text-opacity-70 text-lg font-medium">Elección Municipio escolar 2021</p>
