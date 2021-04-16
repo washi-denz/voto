@@ -7,7 +7,7 @@
                 <img src="{{ asset('images/vote/logo_chacaneque.png') }}" alt="" class="w-14 h-14 md:w-20 md:h-20">
                 <div class="px-3">
                     <h1 class="text-gray-50 text-xl md:text-4xl font-medium uppercase">Voto electrónico</h1>
-                    <p class="text-indigo-200 text-opacity-70 text-sm md:text-lg font-medium">Elección Municipio escolar 2021</p>
+                    <p class="text-indigo-200 text-opacity-70 text-sm md:text-lg font-medium">Elección Municipio Escolar 2021</p>
                 </div>
             </div>
         </div>
