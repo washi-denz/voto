@@ -2,7 +2,10 @@
 
     <div @click="open=!open"
         class="fixed bg-gray-600 text-white text-center rounded-r-lg pl-2 pr-2 py-2 mt-2 top-20 left-0 block md:hidden z-20 cursor-pointer">
-        &#9776;</div>
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 6H20M4 12H20M4 18H11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+        </div>
 
     <aside
         class="fixed overflow-auto -ml-80 md:m-0 w-auto sm:w-72 z-10 h-screen pt-20 pl-3 sm:pl-0  bg-green-500 border-r border-green-500"
