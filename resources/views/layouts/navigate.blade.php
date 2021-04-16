@@ -6,7 +6,7 @@
                 <img class="h-10 w-11" 
                     src="{{ asset('images/vote/logo_chacaneque.png') }}"
                     alt="IES Agropecuario Chacaneque">
-                   <h1 class="text-gray-600 text-sm md:text-2xl"><strong class="font-mono">ADMIN</strong> <span class="hidden sm:block">IES Agropecuario - Chacaneque</span></h1>
+                   <h1 class="text-gray-600 text-sm md:text-base"><strong class="font-mono">ADMIN</strong> <span class="hidden sm:inline-block">IES Agropecuario - Chacaneque</span></h1>
             </div>
             @auth
             <div class="menu flex justify-end items-center space-x-4">

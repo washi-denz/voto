@@ -13,7 +13,7 @@
 
     <div class="bg-white my-6">
 
-        <div class="px-4">
+        <div class="md:px-4">
             <div class="mx-auto my-6">
                 <div class="bg-gray-50 shadow p-6 rounded-lg bg-white">
                     <div class="md:flex md:justify-between md:items-center">
@@ -26,7 +26,7 @@
                         <!-- Legends -->
                         <div class="mb-4">
                         <div class="flex items-center">
-                            <div class="w-2 h-2 bg-blue-600 mr-2 rounded-full"></div>
+                            <div class="w-2 h-2 bg-green-500 mr-2 rounded-full"></div>
                             <div class="text-sm text-gray-700">Votos</div>
                         </div>
                         </div>
@@ -35,13 +35,13 @@
 
                 <div class="line my-8 relative my-20">
 
-                    <!-- Bar Chart -->
+                    <!-- Bar Chart ml-6 -mt-9 -->
                     <div class="flex -mx-2 items-end my-2">
                     @foreach ($candidates as $candidate)
                         <div class="px-2 w-1/6 md:w-1/12">
-                            <div class="transition ease-in duration-200 bg-blue-600 hover:bg-blue-400 relative" style="height:  {{ round( ((100/$total)*$candidate->votes->count()), 2) }}px">
-                                <div x-text="data" class="text-center absolute ml-6 -mt-9 text-gray-800 text-sm"> 
-                                    <img src="{{ asset($candidate->logo) }}" class="w-8" title="{{ $candidate->party_name }}" />
+                            <div class="transition ease-in duration-200 bg-green-500 hover:bg-green-400 relative" style="height:{{ round( ((100/$total)*$candidate->votes->count()), 2) }}px">
+                                <div class="absolute ml-2 -mt-5 sm:ml-6 sm:-mt-9"> 
+                                    <img src="{{ asset($candidate->logo) }}" class="w-8" title="{{ $candidate->party_name }}"/>
                                 </div>
                             </div>
                         </div>
