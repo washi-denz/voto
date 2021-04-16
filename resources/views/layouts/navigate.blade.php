@@ -1,4 +1,4 @@
-<header class="bg-white shadow-md w-full fixed z-20 top-0 h-20 overflow-hidden">
+<header class="bg-white shadow-md w-full fixed z-20 top-0 h-20">
     <div class="max-auto px-8 py-5 bg-white">
         <div class="flex justify-between">
 
