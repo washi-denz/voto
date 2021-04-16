@@ -66,7 +66,25 @@
                         class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block relative lg:table-cell lg:static lg:border-gray-200">
                         <span
                             class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Telefono</span>
-                        {{$census->phone}}
+                        <span class="block">{{$census->phone}}</span>
+
+                        <div class="flex items-center justify-center text-center space-x-1"
+                            x-data="{send:sendSMS('{{$census->phone}}','Participa en la Eleccion escolar\nDNI: {{$census->document}}\nCodigo: {{$census->code}}\n{{asset('/')}}')}">
+                            <button type="button"
+                                class="block rounded-full h-10 w-10 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none"
+                                :class="{'hidden':(send.alert!='' || send.isSuccess)}" title="Notificar por SMS"
+                                @click="send.fetchSMS()">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                    class="h-4 w-4 transform rotate-90 inline">
+                                    <path
+                                        d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z">
+                                    </path>
+                                </svg>
+                                <p class="inline text-xs">sms</p>
+                            </button>
+                            <span class="text-xs text-blue-700" :class="{'hidden':send.isFail}" x-text="send.alert">
+                            </span>
+                        </div>
                     </td>
                     <td
                         class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block relative lg:table-cell lg:static lg:border-gray-200">

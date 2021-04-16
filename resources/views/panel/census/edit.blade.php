@@ -6,13 +6,9 @@
 <div class="py-0">
 
     <div class="absolute top-0 left-0 z-0 -mt-8 w-full bg-gray-100">
-        <<<<<<< HEAD <h4 class="py-4 px-14 md:ml-64 text-lg font-normal uppercase">
+        <h4 class="py-4 px-14 md:ml-64 text-lg font-normal uppercase">
             Editar candidato | {{ $census->name }} {{ $census->last_name }}
-            =======
-            <h4 class="py-4 px-14 sm:ml-64 text-lg font-normal uppercase">
-                Editar candidato | {{ $census->name }} {{ $census->last_name }}
-                >>>>>>> dev
-            </h4>
+        </h4>
     </div>
 
     <div class="bg-white my-6 grid justify-items-center">
