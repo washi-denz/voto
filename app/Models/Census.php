@@ -17,21 +17,21 @@ class Census extends Model
     public function getPhotoAttribute($value)
     {
         if ($value != null)
-            return url('storage/photos/' . $value);
-        return url('images/photos/default.png');
+            return 'storage/photos/' . $value;
+        return 'images/photos/default.png';
     }
 
     //Query Scope
 
-    public function ScopeNameLastName($query,$name){
-        if($name)
-            return $query->where('name','LIKE',"%$name%");
-        
+    public function ScopeNameLastName($query, $name)
+    {
+        if ($name)
+            return $query->where('name', 'LIKE', "%$name%");
     }
 
-    public function ScopeSearchDni($query,$dni){
-        if($dni)
-            return $query->where('document','LIKE',"%$dni%");
-        
-    }        
+    public function ScopeSearchDni($query, $dni)
+    {
+        if ($dni)
+            return $query->where('document', 'LIKE', "%$dni%");
+    }
 }

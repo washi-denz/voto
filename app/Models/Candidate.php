@@ -35,14 +35,14 @@ class Candidate extends Model
     public function getLogoAttribute($value)
     {
         if ($value != null)
-            return url('storage/logos/' . $value);
-        return url('images/logos/default.png');
+            return 'storage/logos/' . $value;
+        return 'images/logos/default.png';
     }
 
     public function getPhotoAttribute($value)
     {
         if ($value != null)
-            return url('storage/photos/' . $value);
-        return url('images/photos/default.png');
+            return 'storage/photos/' . $value;
+        return 'images/photos/default.png';
     }
 }
