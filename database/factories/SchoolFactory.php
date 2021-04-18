@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\School;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class SchoolFactory extends Factory
 {
@@ -22,7 +23,10 @@ class SchoolFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name,
+            'slug' => function(array $school){
+                return Str::slug($school['name']);
+            }
         ];
     }
 }
