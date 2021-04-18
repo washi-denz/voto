@@ -13,11 +13,12 @@
             <form action="{{ route('panel.census.index') }}" method="GET" class="inline md:float-right">
                 @csrf
                 <input type="text" name="document" placeholder="Buscar DNI" class="p-1 rounded">
-                <button class="border border-gray-500 bg-gray-500 text-white rounded-md px-3 py-2 m-1 transition duration-500 ease select-none hover:bg-gray-600 focus:outline-none focus:shadow-outline text-xs">Buscar</button>
+                <button
+                    class="border border-gray-500 bg-gray-500 text-white rounded-md px-3 py-2 m-1 transition duration-500 ease select-none hover:bg-gray-600 focus:outline-none focus:shadow-outline text-xs">Buscar</button>
             </form>
         </h4>
     </div>
-    <div class="bg-white my-6 grid justify-items-center">
+    <div class="my-6 grid justify-items-center">
 
         @include('panel.components.message')
 
@@ -33,8 +34,7 @@
             </thead>
             <tbody class="text-gray-700 text-sm font-light">
                 @foreach ($censuses as $census)
-                <tr
-                    class="bg-white lg:hover:bg-gray-300 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
+                <tr class="bg-white flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
                     <td
                         class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block relative lg:table-cell lg:static lg:border-gray-200 lg:text-left">
                         <span

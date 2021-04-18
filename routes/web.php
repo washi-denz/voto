@@ -6,6 +6,7 @@ use App\Http\Controllers\CensusController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VoteController;
 use App\Http\Controllers\VotingResultController;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,10 @@ use App\Http\Controllers\VotingResultController;
 Route::prefix('panel')->name('panel.')->group(function () {
     Route::resource('/', AdminController::class)->middleware('auth')->only(['index']);
     Route::resource('/census', CensusController::class)->parameters(['census' => 'census'])->middleware('auth');
-    Route::resource('/vote', VotingResultController::class)->middleware('auth');
+    Route::resource('/vote', VotingResultController::class)->middleware('auth')->only('index');
+
+    Route::get('/vote/report', [VotingResultController::class, 'report'])->middleware('auth')->name('vote.report');
+
     Route::post('/census/import', [CensusController::class, 'import_csv'])->middleware('auth')->name('census.import');
     Route::resource('/candidate', CandidateController::class)->middleware('auth');
 

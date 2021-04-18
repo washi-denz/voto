@@ -6,14 +6,18 @@
 <div class="py-0">
 
     <div class="">
-        <h4 class="text-lg font-normal uppercase">
+        <h4 class="text-lg font-bold uppercase">
             Resultados de votación
+            <a href="{{route('panel.vote.report')}}"
+                class="border border-green-500 bg-green-500 text-white rounded-md px-3 py-2 m-1 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline uppercase text-xs"
+                target="_blank">Generar
+                PDF</a>
         </h4>
     </div>
 
     <div class="my-6">
 
-        <div class="md:px-4">
+        <div class="w-full">
             <div class="mx-auto my-6">
                 <div class="bg-gray-50 shadow p-6 rounded-lg">
                     <div class="md:flex md:justify-between md:items-center">
@@ -74,8 +78,8 @@
         <table class="border-collapse w-full table-auto">
             <thead>
                 <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                    <th class="py-3 px-6 text-center hidden lg:table-cell">Candidato</th>
-                    <th class="py-3 px-6 text-center hidden lg:table-cell" colspan="2">Votos</th>
+                    <th class="py-3 px-6 text-center hidden lg:table-cell" style="width: 60%">Candidato</th>
+                    <th class="py-3 px-6 text-center hidden lg:table-cell" style="width: 40%" colspan="3">Votos</th>
                 </tr>
             </thead>
             <tbody class="text-gray-700 text-sm font-light">
@@ -121,6 +125,18 @@
                             </div>
                             <p class="text-gray-600 text-center font-bold">
                                 {{round( ((100/$total)*$candidate->votes->count()), 2)}}%
+                            </p>
+                        </div>
+                    </td>
+                    <td
+                        class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block relative lg:table-cell lg:static lg:border-gray-200 lg:text-left">
+                        <div class="mt-4 lg:mt-0">
+                            <div class="bg-gray-400 w-full h-4 rounded-lg mt-2 overflow-hidden">
+                                <div class="bg-green-400 h-full rounded-lg shadow-md"
+                                    style="width: {{round( ((100/$emitido)*$candidate->votes->count()), 2)}}%"></div>
+                            </div>
+                            <p class="text-gray-600 text-center font-bold">
+                                {{round( ((100/$emitido)*$candidate->votes->count()), 2)}}%
                             </p>
                         </div>
                     </td>
