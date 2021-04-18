@@ -5,12 +5,12 @@
 @section('content')
 <div class="py-0">
 
-    <div class="absolute top-0 left-0 z-0 -mt-8 w-full bg-gray-100">
-        <h4 class="py-4 px-14 md:ml-64 text-lg font-normal uppercase">
+    <div class="">
+        <h4 class="text-lg font-normal uppercase">
             Lista de electores
             <a href="{{route('panel.census.create')}}"
                 class="border border-green-500 bg-green-500 text-white rounded-md px-3 py-2 m-1 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline uppercase text-xs">Registrar</a>
-            <form action="{{ route('panel.census.index') }}" method="GET" class="inline float-right">
+            <form action="{{ route('panel.census.index') }}" method="GET" class="inline md:float-right">
                 @csrf
                 <input type="text" name="document" placeholder="Buscar DNI" class="p-1 rounded">
                 <button class="border border-gray-500 bg-gray-500 text-white rounded-md px-3 py-2 m-1 transition duration-500 ease select-none hover:bg-gray-600 focus:outline-none focus:shadow-outline text-xs">Buscar</button>

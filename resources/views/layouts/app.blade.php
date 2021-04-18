@@ -1,49 +1,44 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title',config('app.name', 'Laravel'))</title>
+        <title>@yield('title',config('app.name', 'Laravel'))</title>
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <!-- Styles -->
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <style>
-        aside {
-            transition: 0.3s all;
-        }
+    </head>
 
-        aside.active {
-            margin-left: 0rem;
-        }
-    </style>
+    <body class="text-gray-800">
 
-</head>
+        <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200">
 
-<body class="font-sans antialiased text-gray-800">
+            @include('layouts.sidebar')
 
-    @include('layouts.navigate')
+            <div class="flex-1 flex flex-col overflow-hidden">
 
-    <div class="grid grid-cols-12 relative">
+                @include('layouts.navigate')
 
-        @include('layouts.sidebar')
+                <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100">
+                    <div class="container mx-auto px-6 py-8">
 
-        <div class="col-span-10 absolute w-full mt-28">
-            <main class="bg-white md:ml-72 max-auto px-8 py-5">
+                        @yield('content')
 
-                @yield('content')
+                    </div>
+                </main>
 
-            </main>
+            </div>
+
         </div>
-    </div>
-    <!-- Custom JS -->
-    <script src="{{ asset('js/custom.js') }}"></script>
-</body>
-
+        <!-- Custom JS -->
+        <script src="{{ asset('js/custom.js') }}"></script>
+    </body>
+    
 </html>

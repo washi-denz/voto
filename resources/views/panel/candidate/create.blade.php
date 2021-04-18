@@ -5,13 +5,13 @@
 @section('content')
 <div class="py-0">
 
-    <div class="absolute top-0 left-0 z-0 -mt-8 w-full bg-gray-100">
-        <h4 class="py-4 px-14 md:ml-64 text-lg font-normal uppercase">
+    <div class="">
+        <h4 class="text-lg font-normal uppercase">
             Crear nuevo candidato
         </h4>
     </div>
 
-    <div class="bg-white my-2 grid justify-items-center">
+    <div class="my-2 grid justify-items-center">
 
         @include('panel.components.message')
 
