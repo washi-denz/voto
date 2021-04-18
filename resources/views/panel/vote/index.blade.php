@@ -15,53 +15,58 @@
 
         <div class="md:px-4">
             <div class="mx-auto my-6">
-                <div class="bg-gray-50 shadow p-6 rounded-lg bg-white">
+                <div class="bg-gray-50 shadow p-6 rounded-lg">
                     <div class="md:flex md:justify-between md:items-center">
                         <div>
                             <h2 class="text-xl text-gray-800 font-bold leading-tight">Alcaldía</h2>
                             <p class="mb-2 text-gray-600 text-sm">Padrón electoral : {{ $total }}</p>
-                            <p class="mb-2 text-gray-600 text-sm">Actas procesadas : 100%</p>
+                            <p class="mb-2 text-gray-600 text-sm">Actas procesadas : {{ ($total/100)*$emitido  }}%</p>
                         </div>
 
                         <!-- Legends -->
                         <div class="mb-4">
-                        <div class="flex items-center">
-                            <div class="w-2 h-2 bg-green-500 mr-2 rounded-full"></div>
-                            <div class="text-sm text-gray-700">Votos</div>
-                        </div>
-                        </div>
-                    </div>
-
-
-                <div class="line my-8 relative my-20">
-
-                    <!-- Bar Chart ml-6 -mt-9 -->
-                    <div class="flex -mx-2 items-end my-2">
-                    @foreach ($candidates as $candidate)
-                        <div class="px-2 w-1/6 md:w-1/12">
-                            <div class="transition ease-in duration-200 bg-green-500 hover:bg-green-400 relative" style="height:{{ round( ((100/$total)*$candidate->votes->count()), 2) }}px">
-                                <div class="absolute ml-2 -mt-5 sm:ml-6 sm:-mt-9"> 
-                                    <img src="{{ asset($candidate->logo) }}" class="w-8" title="{{ $candidate->party_name }}"/>
-                                </div>
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-green-500 mr-2 rounded-full"></div>
+                                <div class="text-sm text-gray-700">Votos</div>
                             </div>
                         </div>
-                        @endforeach
                     </div>
 
-                    <!-- Labels -->
-                    <div class="border-t border-gray-400 mx-auto"></div>
+
+                    <div class="line relative my-20">
+
+                        <!-- Bar Chart ml-6 -mt-9 -->
+                        <div class="flex -mx-2 items-end my-2">
+                            @foreach ($candidates as $candidate)
+                            <div class="px-2 w-1/6 md:w-1/12">
+                                <div class="transition ease-in duration-200 bg-green-500 hover:bg-green-400 relative"
+                                    style="height:{{ round( ((100/$total)*$candidate->votes->count()), 2) }}px">
+                                    <div class="absolute ml-2 -mt-5 sm:ml-6 sm:-mt-9">
+                                        <img src="{{ asset($candidate->logo) }}" class="w-8"
+                                            title="{{ $candidate->party_name }}" />
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+
+                        <!-- Labels -->
+                        <div class="border-t border-gray-400 mx-auto"></div>
                         <div class="flex -mx-2 items-end">
                             @foreach ($candidates as $candidate)
                             <div class="px-2 w-1/6 md:w-1/12">
                                 <div class="bg-red-600 relative">
-                                    <div class="text-center absolute top-0 left-0 right-0 h-2 -mt-px bg-gray-400 mx-auto" style="width: 1px"></div>
-                                    <div x-text="data" class="text-center absolute top-0 left-0 right-0 mt-3 text-gray-700 text-sm"> {{round( ((100/$total)*$candidate->votes->count()), 2)}}% </div>
+                                    <div class="text-center absolute top-0 left-0 right-0 h-2 -mt-px bg-gray-400 mx-auto"
+                                        style="width: 1px"></div>
+                                    <div x-text="data"
+                                        class="text-center absolute top-0 left-0 right-0 mt-3 text-gray-700 text-sm">
+                                        {{round( ((100/$total)*$candidate->votes->count()), 2)}}% </div>
                                 </div>
                             </div>
                             @endforeach
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
