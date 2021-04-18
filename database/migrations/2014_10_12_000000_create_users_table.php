@@ -28,6 +28,8 @@ class CreateUsersTable extends Migration
 
             $table->rememberToken();
 
+            $table->foreignId('school_id')->constrained();
+
             $table->timestamps();
         });
     }
