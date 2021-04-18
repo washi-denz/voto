@@ -15,7 +15,7 @@ class CensusController extends Controller
 {
     use UploadTrait;
     function list(Request $request)
-    {
+    {   
         $queries = array();
         $columns = [
             'name',
@@ -25,7 +25,11 @@ class CensusController extends Controller
             'code',
         ];
 
-        $censuses = Census::select('*');
+        //Búsqueda
+        $dni = $request->get('document');
+
+        $censuses = Census::select('*')->SearchDni($dni);
+
         if ($request->has('filter') && in_array($request->filter, $columns)) {
             $filter = trim($request->filter);
             $order  = ($request->has('order') && $request->order == 'asc') ? 'asc' : 'desc';

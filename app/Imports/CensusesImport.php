@@ -22,6 +22,7 @@ class CensusesImport implements ToModel
             'last_name' => $row[1],
             'grade'     => $row[2],
             //'document'  => $row[3],
+            'phone'     => $row[4],
             'code'      => substr(strtoupper(md5($row[3])), 0, 4),
             'users_id'   => Auth::user()->id,
         ]);

@@ -20,4 +20,18 @@ class Census extends Model
             return url('storage/photos/' . $value);
         return url('images/photos/default.png');
     }
+
+    //Query Scope
+
+    public function ScopeNameLastName($query,$name){
+        if($name)
+            return $query->where('name','LIKE',"%$name%");
+        
+    }
+
+    public function ScopeSearchDni($query,$dni){
+        if($dni)
+            return $query->where('document','LIKE',"%$dni%");
+        
+    }        
 }

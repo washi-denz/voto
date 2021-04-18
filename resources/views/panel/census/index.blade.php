@@ -10,6 +10,11 @@
             Lista de electores
             <a href="{{route('panel.census.create')}}"
                 class="border border-green-500 bg-green-500 text-white rounded-md px-3 py-2 m-1 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline uppercase text-xs">Registrar</a>
+            <form action="{{ route('panel.census.index') }}" method="GET" class="inline float-right">
+                @csrf
+                <input type="text" name="document" placeholder="Buscar DNI" class="p-1 rounded">
+                <button class="border border-gray-500 bg-gray-500 text-white rounded-md px-3 py-2 m-1 transition duration-500 ease select-none hover:bg-gray-600 focus:outline-none focus:shadow-outline text-xs">Buscar</button>
+            </form>
         </h4>
     </div>
     <div class="bg-white my-6 grid justify-items-center">
