@@ -7,14 +7,21 @@ use App\Models\School;
 
 class SchoolController extends Controller
 {
-    public function index(Request $request){
+    public function index(){
 
         $schools = School::select('*')->get();
 
         return view('portal.index',['schools'=>$schools]);
     }
 
-    public function index_school(Request $request,$slug){
-        return $slug;
+    public function index_school($slug){
+
+        $school = School::where('slug','=',$slug)->get();
+
+        if(count($school) > 0){
+            return view('portal.vote.index',['slug'=>$slug]);    
+        }
+        return redirect()->route('portal.home');
+
     }
 }

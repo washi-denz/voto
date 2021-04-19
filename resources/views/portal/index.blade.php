@@ -245,7 +245,7 @@
                                     <div>
                                         <h3 class="text-lg font-medium">Seleccione su instución Educativa:</h3>
                                         @foreach($schools as $school)
-                                        <a href="#" class="text-blue-500 block">
+                                        <a href="{{ url('portal/'.$school->slug) }}" class="text-blue-500 block">
                                             {{ $school->name }}
                                         </a>
                                         @endforeach
