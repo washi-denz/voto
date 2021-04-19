@@ -17,8 +17,8 @@ Voto Electrónico Elección Municipio Escolar 2021
     <div class="flex justify-center">
         <div class="bg-indigo-400 bg-opacity-30 rounded mx-3 shadow-lg p-4 md:w-1/2">
             <div class="flex gap-2">
-                <img src="{{ $candidate->photo }}" class="flex-none w-32 h-32 border-2 border-indigo-900 rounded">
-                <img src="{{ $candidate->logo }}" class="flex-grow w-32 h-32 border-2 border-indigo-900 rounded">
+                <img src="{{ asset($candidate->photo) }}" class="flex-none w-32 h-32 border-2 border-indigo-900 rounded">
+                <img src="{{ asset($candidate->logo) }}" class="flex-grow w-32 h-32 border-2 border-indigo-900 rounded">
             </div>
             <div class="flex-grow text-center">
                 <h3 class="text-indigo-200 text-xl font-medium mt-3">{{ $candidate->party_name}}</h3>

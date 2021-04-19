@@ -23,8 +23,8 @@ Voto Electrónico Elección Municipio Escolar 2021
                         <input type="hidden" name="census_id" value="{{ $census->id }}">
                         <input type="submit" id="candidate_id{{ $candidate->id }}" name="candidate_id" value="{{ $candidate->id }}">
                         <label for="candidate_id{{ $candidate->id }}" class="flex items-center md:flex-col gap-2 bg-gray-50 rounded p-2 w-full md:w-40 cursor-pointer transition duration-300 hover:bg-yellow-300 border-4 border-indigo-900 border-opacity-90">
-                            <img src="{{ $candidate->photo }}" alt="" class="flex-none w-20 h-20 md:w-full md:h-40 rounded">
-                            <img src="{{ $candidate->logo }}" alt="" class="flex-none w-20 h-20 md:w-full md:h-24 rounded-full md:rounded">
+                            <img src="{{ asset($candidate->photo) }}" alt="" class="flex-none w-20 h-20 md:w-full md:h-40 rounded">
+                            <img src="{{ asset($candidate->logo) }}" alt="" class="flex-none w-20 h-20 md:w-full md:h-24 rounded-full md:rounded">
                             <div class="flex-grow text-center">
                                 <h3 class="text-indigo-900 font-bold text-sm text-normal sm:text-lg md:text-lg mt-0 md:mt-3 px-2">{{ $candidate->party_name }}</h3>
                                 <p class="mb-3 text-xs sm:text-sm md:text-sm">{{ $candidate->name }} {{ $candidate->last_name }}</p>
