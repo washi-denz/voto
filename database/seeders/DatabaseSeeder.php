@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
+        School::factory(['name'=>'IES Agropecuaria Chacaneque'])->create();
+        School::factory(['name'=>'IES Tupac Amaru - Coasa'])->create();
         School::factory()->times(4)->create();
 
         User::factory([
