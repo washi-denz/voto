@@ -75,7 +75,7 @@
                         <span
                             class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Accion</span>
                         <div class="flex item-center justify-center">
-                            <a href="{{ route('panel.candidate.edit', $candidate) }}"
+                            <a href="{{ route('panel.candidate.edit', $candidate->id) }}"
                                 class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor">
@@ -83,7 +83,7 @@
                                         d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                 </svg>
                             </a>
-                            <form action="{{route('panel.candidate.destroy',$candidate)}}" method="post"
+                            <form action="{{route('panel.candidate.destroy',$candidate->id)}}" method="post"
                                 x-ref="destroy{{$candidate->id}}" x-data="">
                                 @csrf
                                 @method('delete')

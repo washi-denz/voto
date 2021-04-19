@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Candidate;
 use App\Models\Census;
+use App\Models\User;
 use App\Traits\UploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -21,21 +22,24 @@ class CandidateController extends Controller
             'census_id',
         ];
 
-        //$censuses = Candidate::select('*'); // use join
-        $censuses = Candidate::select('candidates.id','candidates.logo','candidates.party_name','candidates.census_id','censuses.document','censuses.name','censuses.last_name','censuses.photo')
-                                    ->join('censuses','candidates.census_id','=','censuses.id');
+        $user = Auth::user();
+
+        $candidates = User::select('candidates.id','candidates.logo','candidates.party_name','candidates.census_id','censuses.document','censuses.name','censuses.last_name','censuses.photo')
+            ->join('candidates','users.id','=','candidates.users_id')
+            ->join('censuses','censuses.id','=','candidates.census_id')
+        ->where('users.school_id','=',$user->school_id);
 
         if ($request->has('filter') && in_array($request->filter, $columns)) {
             $filter = trim($request->filter);
             $order  = ($request->has('order') && $request->order == 'asc') ? 'asc' : 'desc';
 
-            $censuses->orderBy($filter, $order);
+            $candidates->orderBy($filter, $order);
             $queries['filter'] = $filter;
             $queries['order']  = $order;
         } else {
-            $censuses->orderBy('party_name', 'asc');
+            $candidates->orderBy('party_name', 'asc');
         }
-        return $censuses->paginate(15)->appends($queries);
+        return $candidates->paginate(15)->appends($queries);
     }
     public function index(Request $request)
     {
@@ -145,12 +149,21 @@ class CandidateController extends Controller
 
     public function destroy(Candidate $candidate)
     {
-        if ($candidate->delete()) {
-            return redirect()->route('panel.candidate.index')->with("message", "Se ha eliminado el candidato corectamente.")
-                ->with("type", "success");
+        $success = Candidate::select()->where('candidate_id','=',$candidate->id);
+
+        if(!$success){
+
+            if ($candidate->delete()) {
+                return redirect()->route('panel.candidate.index')->with("message", "Se ha eliminado el candidato corectamente.")
+                    ->with("type", "success");
+            }
+            return redirect()->back()->withInput()->with("message", "Algo ha salido mal, vuelva a intentar mas tarde.")
+                ->with("type", "error");
         }
-        return redirect()->back()->withInput()->with("message", "Algo ha salido mal, vuelva a intentar mas tarde.")
-            ->with("type", "error");
+        return redirect()->route('panel.candidate.index')->with("message", "No se puede eliminar pq ya tiene votos el candidato.")
+        ->with("type", "info");
+        
+
     }
 
     public function data_census(Request $request)
@@ -164,7 +177,9 @@ class CandidateController extends Controller
             ]
         );
 
-        $census = Census::where('document','=',$data['document'])->first();
+        $user   = Auth::user();
+
+        $census = Census::where('document','=',$data['document'])->where('users_id','=',$user->id)->first();
 
         if($census){
 
