@@ -62,4 +62,18 @@ class User extends Authenticatable
     {
         return 'username';
     }
+
+    public function getLogoAttribute($value)
+    {
+        if ($value != null)
+            return 'storage/logos/' . $value;
+        return 'images/logos/default.png';
+    }
+
+    public function getPhotoAttribute($value)
+    {
+        if ($value != null)
+            return 'storage/photos/' . $value;
+        return 'images/photos/default.png';
+    }
 }

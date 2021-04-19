@@ -5,7 +5,6 @@ Voto Electrónico Elección Municipio Escolar 2021
 @endsection
 
 @section('content')
-
 <div class="container mx-auto lg:px-40 md:px-8 sm:px-16 pt-0 md:pt-32">
     
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-6">
@@ -23,16 +22,20 @@ Voto Electrónico Elección Municipio Escolar 2021
         <div class="px-3 text-center md:text-left">
             <form action="{{ route('portal.vote.store') }}" method="POST">
                 @csrf
-
+                <input type="hidden" name="slug" value="{{ $slug }}">
                 <label for="document" class="text-gray-100 text-xs font-light mb-4 block">Para emitir su <strong class="border-b-2 border-yellow-300">voto</strong> : Ingrese su <strong class="border-b-2 border-yellow-300">DNI</strong> y <strong class="border-b-2 border-yellow-300">Código</strong> de votación</label>
                 <input type="text" name="document" id="document" value="{{ old('document') }}" class="focus:outline-none bg-indigo-400 bg-opacity-20 py-4 px-4 mb-6 mx-auto md:mx-0 text-xl text-center md:text-left text-indigo-50 text-opacity-70 placeholder-indigo-200  font-mono block" placeholder="Ingrese su DNI" autocomplete="off" required>        
-                @error('code')
-                <small class="text-red-400">{{ $message }}</small>
+                @error('document')
+                <small class="text-red-400 block">{{ $message }}</small>
                 @enderror
             
                 <input type="password" name="code" id="code" value="{{ old('code') }}" class="focus:outline-none bg-indigo-400 bg-opacity-20 py-4 px-4 mb-6 mx-auto md:mx-0 text-xl text-center md:text-left text-indigo-50 text-opacity-70 placeholder-indigo-200  font-mono block" placeholder="Ingrese su código" autocomplete="off" required>
                 @error('code')
-                <small class="text-red-400">{{ $message }}</small>
+                <small class="text-red-400 block">{{ $message }}</small>
+                @enderror
+
+                @error('slug')
+                <small class="text-red-400 block">{{ $message }}</small>
                 @enderror
 
                 @if(Session::has('message'))
