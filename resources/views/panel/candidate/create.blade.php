@@ -73,7 +73,7 @@
                                 <input
                                     class="appearance-none block w-full bg-gray-200 text-grey-darker border @error('last_name') border-red-500 @else border-gray-400 @enderror rounded py-3 px-4"
                                     id="last_name" name="last_name" type="text" placeholder="Apellidos"
-                                    value="{{ old('last_name',$census->name) }}" disabled>
+                                    value="{{ old('last_name',$census->last_name) }}" disabled>
                             </div>
                         </div>
                     </div>

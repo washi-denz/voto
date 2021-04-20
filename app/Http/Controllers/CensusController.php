@@ -39,7 +39,7 @@ class CensusController extends Controller
 
         //$censuses = Census::select('*')->SearchDni($dni);
 
-        $censuses = Census::select('censuses.id','censuses.document','censuses.code','censuses.name','censuses.last_name','censuses.phone','censuses.condition')
+        $censuses = Census::select('censuses.id','censuses.document','censuses.code','censuses.name','censuses.last_name','censuses.phone','censuses.photo','censuses.condition')
                 ->join('users','censuses.users_id','=','users.id')
             ->where('users.school_id','=',$school_id)
             ->SearchDni($dni);

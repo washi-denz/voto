@@ -29,6 +29,6 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->times(5)->create();
         Census::factory()->times(100)->create();
-        Candidate::factory()->times(10)->create();
+        //Candidate::factory()->times(10)->create();
     }
 }

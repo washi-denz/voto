@@ -128,18 +128,6 @@
                             </p>
                         </div>
                     </td>
-                    <td
-                        class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block relative lg:table-cell lg:static lg:border-gray-200 lg:text-left">
-                        <div class="mt-4 lg:mt-0">
-                            <div class="bg-gray-400 w-full h-4 rounded-lg mt-2 overflow-hidden">
-                                <div class="bg-green-400 h-full rounded-lg shadow-md"
-                                    style="width: {{round( ((100/$emitido)*$candidate->votes), 2)}}% "></div>
-                            </div>
-                            <p class="text-gray-600 text-center font-bold">
-                                {{round( ((100/$emitido)*$candidate->votes), 2)}}%
-                            </p>
-                        </div>
-                    </td>
                 </tr>
                 @endforeach
             </tbody>

@@ -25,7 +25,8 @@ class VotingResultController extends Controller
                         ->join('censuses','censuses.id','=','candidates.census_id')
                     ->where('users.school_id','=',$school_id)->get();
 
-        $emitido = (Vote::count() > 0)? 0:1;
+        //$emitido = (Vote::count() > 0)? 0:1;
+        $emitido = 0;
 
         foreach ($candidates as $candidate){
             $count = Vote::where('candidate_id','=',$candidate->id)->count();

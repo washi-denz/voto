@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Candidate;
 use App\Models\Census;
 use App\Models\User;
+use App\Models\Vote;
 use App\Traits\UploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -149,7 +150,7 @@ class CandidateController extends Controller
 
     public function destroy(Candidate $candidate)
     {
-        $success = Candidate::select()->where('candidate_id','=',$candidate->id);
+        $success = Vote::where('candidate_id','=',$candidate->id)->first();
 
         if(!$success){
 
@@ -163,7 +164,6 @@ class CandidateController extends Controller
         return redirect()->route('panel.candidate.index')->with("message", "No se puede eliminar pq ya tiene votos el candidato.")
         ->with("type", "info");
         
-
     }
 
     public function data_census(Request $request)
