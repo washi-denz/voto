@@ -28,7 +28,21 @@ class CensusController extends Controller
         //Búsqueda
         $dni = $request->get('document');
 
-        $censuses = Census::select('*')->SearchDni($dni);
+        //Identificar a que School pertenece el login actual
+        $school_id = Auth::user()->school_id;
+
+        /*
+        SELECT*FROM censuses censuses
+            INNER JOIN users users ON censuses.users_id = users.id
+        WHERE users.school_id =1;
+        */
+
+        //$censuses = Census::select('*')->SearchDni($dni);
+
+        $censuses = Census::select('censuses.id','censuses.document','censuses.code','censuses.name','censuses.last_name','censuses.phone','censuses.condition')
+                ->join('users','censuses.users_id','=','users.id')
+            ->where('users.school_id','=',$school_id)
+            ->SearchDni($dni);
 
         if ($request->has('filter') && in_array($request->filter, $columns)) {
             $filter = trim($request->filter);
@@ -145,7 +159,7 @@ class CensusController extends Controller
 
         $success = $census->update($data);
         if ($success) {
-            return redirect()->route('panel.census.edit', $census)->with("message", "Se ha modificado el padron corectamente.")
+            return redirect()->route('panel.census.edit', $census)->with("message", "Se ha modificado el padron correctamente.")
                 ->with("type", "success");
         }
         return redirect()->back()->withInput()->with("message", "Algo ha salido mal, vuelva a intentar mas tarde.")
@@ -155,7 +169,7 @@ class CensusController extends Controller
     public function destroy(Census $census)
     {
         if ($census->delete()) {
-            return redirect()->route('panel.census.index')->with("message", "Se ha eliminado del padron corectamente.")
+            return redirect()->route('panel.census.index')->with("message", "Se ha eliminado del padron correctamente.")
                 ->with("type", "success");
         }
         return redirect()->back()->withInput()->with("message", "Algo ha salido mal, vuelva a intentar mas tarde.")
