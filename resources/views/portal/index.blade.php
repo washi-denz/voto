@@ -262,12 +262,12 @@
                                         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-8">
                                             @foreach($schools as $school)
                                                 <a href="{{url('portal/'.$school->slug)}}" class="sm:flex bg-white rounded-lg shadow-md p-6 block transition duration-500 group bg-gray-300 hover:bg-blue-400 hover:border-indigo-900 hover:shadow-sm bg-opacity-25 relative">
-                                                    <div>
-                                                        <img src="{{ asset($school->photo) }}" alt="" class="w-14 md:16 mx-auto sm:pr-4">
+                                                    <div class="sm:flex-none">
+                                                        <img src="{{ asset($school->logo) }}" alt="" class="w-14 md:16 mx-auto sm:pr-4">
                                                     </div>
                                                     <div class="text-center md:text-left">
                                                         <h3 class="text-indigo-700 group-hover:text-indigo-900 text-md md:text-lg font-medium">{{ $school->name }}</h3>
-                                                        <p class="group-hover:text-white text-gray-500 text-xs md:text-sm">Hola que ahcesssss</p>
+                                                        <p class="group-hover:text-white text-gray-500 text-xs md:text-sm">{{ $school->description }}</p>
                                                     </div>
                                                     
                                                     <div class="absolute bottom-0 right-0 m-2 text-indigo-500 group-hover:text-gray-50">

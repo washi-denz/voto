@@ -12,7 +12,7 @@ class School extends Model
     public function getLogoAttribute($value)
     {
         if ($value != null)
-            return 'logo-school/' . $value;
+            return 'images/logos-school/' . $value;
         return 'images/default/logo_school.png';
     }
 }
