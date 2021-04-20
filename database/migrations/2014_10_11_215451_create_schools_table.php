@@ -17,7 +17,7 @@ class CreateSchoolsTable extends Migration
             $table->id();
 
             $table->string('name');
-            $table->string('photo')->nullable();
+            $table->string('logo')->nullable();
             $table->string('description')->nullable();
             $table->string('num_students')->default(0);
             $table->string('slug')->unique();

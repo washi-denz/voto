@@ -242,27 +242,42 @@
                                     <div class="mt-8 text-2xl dark:text-gray-200"> Bienvenido a Voto Electónico </div>
                                     <div class="mt-6 text-gray-500 dark:text-gray-400"> El APP desarrollado para la Elecciones Municipales de todo el Perú.</div>
                                     <div>
-                                    @if(Session::has('message'))
 
-@if(Session::get('type') == 'success')
-    @include('portal.components.alert.success',['message'=>Session::get('message')])
-@endif
+                                        @if(Session::has('message'))
+                                            @if(Session::get('type') == 'success')
+                                                @include('portal.components.alert.success',['message'=>Session::get('message')])
+                                            @endif
 
-@if(Session::get('type') == 'danger')
-    @include('portal.components.alert.danger',['message'=>Session::get('message')])
-@endif
+                                            @if(Session::get('type') == 'danger')
+                                                @include('portal.components.alert.danger',['message'=>Session::get('message')])
+                                            @endif
 
-@if(Session::get('type') == 'warning')
-    @include('portal.components.alert.warning',['message'=>Session::get('message')])
-@endif
+                                            @if(Session::get('type') == 'warning')
+                                                @include('portal.components.alert.warning',['message'=>Session::get('message')])
+                                            @endif
 
-@endif
+                                        @endif
+
                                         <h3 class="text-lg font-medium">Seleccione su instución Educativa:</h3>
-                                        @foreach($schools as $school)
-                                        <a href="{{ url('portal/'.$school->slug) }}" class="text-blue-500 block">
-                                            {{ $school->name }}
-                                        </a>
-                                        @endforeach
+                                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-8">
+                                            @foreach($schools as $school)
+                                                <a href="{{url('portal/'.$school->slug)}}" class="sm:flex bg-white rounded-lg shadow-md p-6 block transition duration-500 group bg-gray-300 hover:bg-blue-400 hover:border-indigo-900 hover:shadow-sm bg-opacity-25 relative">
+                                                    <div>
+                                                        <img src="{{ asset($school->photo) }}" alt="" class="w-14 md:16 mx-auto sm:pr-4">
+                                                    </div>
+                                                    <div class="text-center md:text-left">
+                                                        <h3 class="text-indigo-700 group-hover:text-indigo-900 text-md md:text-lg font-medium">{{ $school->name }}</h3>
+                                                        <p class="group-hover:text-white text-gray-500 text-xs md:text-sm">Hola que ahcesssss</p>
+                                                    </div>
+                                                    
+                                                    <div class="absolute bottom-0 right-0 m-2 text-indigo-500 group-hover:text-gray-50">
+                                                        <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+                                                            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                                        </svg>
+                                                    </div>
+                                                </a>
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
                                 <div>
