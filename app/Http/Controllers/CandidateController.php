@@ -179,7 +179,10 @@ class CandidateController extends Controller
 
         $user   = Auth::user();
 
-        $census = Census::where('document','=',$data['document'])->where('users_id','=',$user->id)->first();
+        //$census = Census::where('document','=',$data['document'])->where('users_id','=',$user->id)->first();
+        $census = Census::select('censuses.id','censuses.document','censuses.code','censuses.name','censuses.last_name','censuses.phone','censuses.photo','censuses.condition')
+            ->join('users','censuses.users_id','=','users.id')
+        ->where('users.school_id','=',$user->school_id)->where('censuses.document','=',$data['document'])->first();
 
         if($census){
 
@@ -196,4 +199,5 @@ class CandidateController extends Controller
             ->with("type", "error"); 
         
     }
+
 }
