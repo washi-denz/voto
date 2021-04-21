@@ -28,7 +28,7 @@
     
 </head>
 
-<body class="bg-indigo-900 m-0 mb-12 pb-12">
+<body class="{{ Session::get('bg') }} m-0 mb-12 pb-12">
     @yield('content')
     @include('portal.parts.footer')
 </body>

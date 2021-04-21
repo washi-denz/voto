@@ -20,7 +20,8 @@ class CreateSchoolsTable extends Migration
             $table->string('logo')->nullable();
             $table->string('description')->nullable();
             $table->string('num_students')->default(0);
-            $table->string('slug')->unique();
+            $table->string('slug')->unique();    
+            $table->string('class')->default('{"bg":"bg-yellow-500","color":"yellow"}');
 
             $table->timestamps();
         });
