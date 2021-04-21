@@ -14,12 +14,16 @@ class SchoolController extends Controller
         return view('portal.index',['schools'=>$schools]);
     }
 
-    public function index_school($slug){
+    public function index_school(Request $request,$slug){
 
-        $school = School::where('slug','=',$slug)->get();
+        $school = School::where('slug','=',$slug)->first();
 
-        if(count($school) > 0){
-            return view('portal.vote.index',['slug'=>$slug]);    
+        if($school){
+
+            //crear sessión permanente de aspecto voto electrónico
+            $request->session()->put('logo',$school->logo);
+
+            return view('portal.vote.index',['school'=>$school]);    
         }
         return redirect()->route('portal.home');
 

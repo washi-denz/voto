@@ -7,7 +7,7 @@
                 <p class="text-indigo-200 text-opacity-70 text-xs font-light py-4 px-4 uppercase">Bienvenido al sistema de voto electrónico elección municipio escolar 2021</p>
             </div>
             <div>
-                <img src="{{ asset('images/vote/ugel.png') }}" alt="" class="w-16 h-12 md:w-20 md:h-16 my-3 float-right">
+                {{--<img src="" alt="" class="w-16 h-12 md:w-20 md:h-16 my-3 float-right"> --}}
             </div>
         </div>
         

@@ -5,13 +5,14 @@ Voto Electrónico Elección Municipio Escolar 2021
 @endsection
 
 @section('content')
+{{ Session::get('logo') }}
 <div class="container mx-auto lg:px-40 md:px-8 sm:px-16 pt-0 md:pt-32">
     
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-6">
         <div class="px-3">
             <!--tilte big-->
                 <div class="flex border-b border-indigo-200 border-opacity-20 md:border-none py-6 mx-3">
-                    <img src="{{ asset('images/vote/logo_chacaneque.png') }}" alt="" class="w-14 h-14 md:w-20 md:h-20">
+                    <img src="{{ asset($school->logo) }}" alt="" class="w-14 h-14 md:w-20 md:h-20">
                     <div class="px-3">
                         <h1 class="text-gray-50 text-xl md:text-4xl font-medium uppercase">Voto electrónico</h1>
                         <p class="text-indigo-200 text-opacity-70 text-sm md:text-lg font-medium">Elección Municipio Escolar 2021</p>
@@ -22,7 +23,7 @@ Voto Electrónico Elección Municipio Escolar 2021
         <div class="px-3 text-center md:text-left">
             <form action="{{ route('portal.vote.store') }}" method="POST">
                 @csrf
-                <input type="hidden" name="slug" value="{{ $slug }}">
+                <input type="hidden" name="slug" value="{{ $school->slug }}">
                 <label for="document" class="text-gray-100 text-xs font-light mb-4 block">Para emitir su <strong class="border-b-2 border-yellow-300">voto</strong> : Ingrese su <strong class="border-b-2 border-yellow-300">DNI</strong> y <strong class="border-b-2 border-yellow-300">Código</strong> de votación</label>
                 <input type="text" name="document" id="document" value="{{ old('document') }}" class="focus:outline-none bg-indigo-400 bg-opacity-20 py-4 px-4 mb-6 mx-auto md:mx-0 text-xl text-center md:text-left text-indigo-50 text-opacity-70 placeholder-indigo-200  font-mono block" placeholder="Ingrese su DNI" autocomplete="off" required>        
                 @error('document')
