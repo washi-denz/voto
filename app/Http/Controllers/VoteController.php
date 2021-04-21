@@ -21,9 +21,9 @@ class VoteController extends Controller
     {        
         $data = $request->validate(
             [
-                'document' => 'required',
-                'code'     => 'required',
-                'slug'     => 'required',
+                'document'  => 'required',
+                'code'      => 'required',
+                'school_id' => 'required',
             ],
             [
                 'document.required' => 'Este dato es requerido',
@@ -31,39 +31,42 @@ class VoteController extends Controller
                 'slug.required'     => 'No se ha elegido IE'
             ]
         );
-    
+
         $census = Census::where('code','=',$data['code'])->where('document','=',$data['document'])->first();
 
         if ($census) {
 
-            if ($census->condition == false) {
+            $candidates = User::select('*')->join('candidates','users.id','=','candidates.users_id')->where('users.school_id','=',$data['school_id'])->count();
 
-                $school = School::where('slug','=',$request->slug)->first();
-                $users  = User::Where('id','=',$census->users_id)->where('school_id','=',$school->id)->first();
+            if($candidates > 1){
 
-                if($users){
+                if ($census->condition == false) {
 
-                    //creando sesión tmp      
-                    $request->session()->put('census_id',$census->id);//para crear el hash
-                    $request->session()->put('slug',$request->slug);//para la vista
-        
-                    return redirect()->route('portal.vote.show',$census);
+                    $users  = User::Where('id','=',$census->users_id)->where('school_id','=',$request->school_id)->first();
 
+                    if($users){
+
+                        //creando sesión tmp      
+                        $request->session()->put('census_id',$census->id);//para crear el hash
+                        $request->session()->put('school_id',$request->school_id);//
+            
+                        return redirect()->route('portal.vote.show',$census);
+
+                    }
+                    return redirect()->back()->with("message","El DNI o Código no pertenece a esta IE. Elija su IE correcta o contacte con la Comisión Electoral.")
+                        ->with("type","danger");
                 }
-                return redirect()->back()->with("message","El DNI y Código no pertenece a esta IE. Elija su IE correcta o contacte con la Comisión Electoral.")
-                    ->with("type","danger");
+                return redirect()->back()->with("message", "Atención!!! Ud ya sufragó, si hay error contacte con la Comisión Electoral.")
+                    ->with("type", "warning");
             }
-            return redirect()
-                ->back()
-                ->withInput() //para retornar los valores del formulario
-                ->with("message", "Atención!!! Ud ya sufragó, si hay error contacte con la Comisión Electoral.")
-                ->with("type", "warning");
+            return redirect()->back()->with("message", "Aún no existe mínimo de candidatos.Consulte con la Comisión Electoral.")//Para iniciar con la elección min de candidatos es 2
+                ->with("type", "warning");            
+                return $candidates;
+            
         }
-        return redirect()
-            ->back()
-            ->withInput() //para retornar los valores del formulario
-            ->with("message", "Su clave es INVÁLIDA, si persiste el problema contacte con la Comisión Electoral.")
+        return redirect()->back()->with("message", "Su  DNI o Código es INVÁLIDA, si persiste el problema contacte con la Comisión Electoral.")
             ->with("type", "danger");
+
 
     }
 
@@ -71,8 +74,7 @@ class VoteController extends Controller
 
         if($request->session()->get('census_id') == $census_id ){
 
-            $slug      = $request->session()->get('slug');
-            $school_id = School::where('slug','=',$slug)->first();
+            $school_id = $request->session()->get('school_id');
             
             //SELECT candidates.id,candidates.logo,candidates.party_name,candidates.census_id ,censuses.photo,censuses.name,censuses.last_name FROM users users 
                 //INNER JOIN candidates candidates ON users.id = candidates.users_id 
@@ -83,7 +85,7 @@ class VoteController extends Controller
             $candidates = User::select('candidates.logo','candidates.id','candidates.party_name','censuses.photo','censuses.name','censuses.last_name')
                                     ->join('candidates','users.id','=','candidates.users_id')
                                     ->join('censuses','censuses.id','=','candidates.census_id')
-                                ->where('users.school_id','=',$school_id->id)
+                                ->where('users.school_id','=',$school_id)
                                 ->get();
 
             $census = Census::where('id',$census_id)->get();
@@ -101,7 +103,6 @@ class VoteController extends Controller
 
         $census_id    = $request->census_id;
         $candidate_id = $request->candidate_id;
-        $slug         = $request->session()->get('slug');
 
         if($request->session()->get('census_id') == $census_id ){
 
@@ -124,11 +125,12 @@ class VoteController extends Controller
 
     public function update_confirm(Request $request,$candidate_id){
 
-        $slug = $request->session()->get('slug');
-
         if($request->session()->has('census_id')){
 
             $census_id = $request->session()->get('census_id');
+            $school_id = $request->session()->get('school_id');
+
+            $school = School::where('id','=',$school_id)->first();
             
             $hash = Hash::make($census_id);//hash
 
@@ -146,12 +148,12 @@ class VoteController extends Controller
 
                 // Eliminar session tmp
                 $request->session()->forget('census_id');
-                $request->session()->forget('slug');
+                $request->session()->forget('school_id');
 
-                return redirect()->route('portal.index.school',$slug)->with("message","¡¡ FELICIDADES !! SU VOTO SE REALIZÓ CON ÉXITO")
+                return redirect()->route('portal.index.school',$school->slug)->with("message","¡¡ FELICIDADES !! SU VOTO SE REALIZÓ CON ÉXITO")
                     ->with("type","success");
             }
-            return redirect()->route('portal.index.school',$slug)->with("message", "Algo ha salido mal, vuelva a intentar mas tarde.")
+            return redirect()->route('portal.index.school',$school->slug)->with("message", "Algo ha salido mal, vuelva a intentar mas tarde.")
                 ->with("type","danger");
 
         }

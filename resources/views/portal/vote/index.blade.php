@@ -5,7 +5,7 @@ Voto Electrónico Elección Municipio Escolar 2021
 @endsection
 
 @section('content')
-{{ Session::get('logo') }}
+
 <div class="container mx-auto lg:px-40 md:px-8 sm:px-16 pt-0 md:pt-32">
     
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-6">
@@ -23,7 +23,7 @@ Voto Electrónico Elección Municipio Escolar 2021
         <div class="px-3 text-center md:text-left">
             <form action="{{ route('portal.vote.store') }}" method="POST">
                 @csrf
-                <input type="hidden" name="slug" value="{{ $school->slug }}">
+                <input type="hidden" name="school_id" value="{{ $school->id }}">
                 <label for="document" class="text-gray-100 text-xs font-light mb-4 block">Para emitir su <strong class="border-b-2 border-yellow-300">voto</strong> : Ingrese su <strong class="border-b-2 border-yellow-300">DNI</strong> y <strong class="border-b-2 border-yellow-300">Código</strong> de votación</label>
                 <input type="text" name="document" id="document" value="{{ old('document') }}" class="focus:outline-none bg-indigo-400 bg-opacity-20 py-4 px-4 mb-6 mx-auto md:mx-0 text-xl text-center md:text-left text-indigo-50 text-opacity-70 placeholder-indigo-200  font-mono block" placeholder="Ingrese su DNI" autocomplete="off" required>        
                 @error('document')
