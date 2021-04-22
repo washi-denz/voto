@@ -26,15 +26,10 @@
                         <div class="flex items-center">
                             <!-- Logo -->
                             <div class="flex-shrink-0">
-                                <a href="#">
-                                    <svg viewBox="0 0 48 48" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg" class="block w-auto h-9">
-                                        <path
-                                            d="M11.395 44.428C4.557 40.198 0 32.632 0 24 0 10.745 10.745 0 24 0a23.891 23.891 0 0113.997 4.502c-.2 17.907-11.097 33.245-26.602 39.926z"
-                                            fill="#6875F5"></path>
-                                        <path
-                                            d="M14.134 45.885A23.914 23.914 0 0024 48c13.255 0 24-10.745 24-24 0-3.516-.756-6.856-2.115-9.866-4.659 15.143-16.608 27.092-31.75 31.751z"
-                                            fill="#6875F5"></path>
+                                <a href="{{ route('portal.home') }}">
+                                    <svg class="h-12 w-12" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M364.61 390.213C304.625 450.196 207.37 450.196 147.386 390.213C117.394 360.22 102.398 320.911 102.398 281.6C102.398 242.291 117.394 202.981 147.386 172.989C147.386 230.4 153.6 281.6 230.4 307.2C230.4 256 256 102.4 294.4 76.7999C320 128 334.618 142.997 364.608 172.989C394.601 202.981 409.597 242.291 409.597 281.6C409.597 320.911 394.601 360.22 364.61 390.213Z" fill="#4C51BF" stroke="#4C51BF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M201.694 387.105C231.686 417.098 280.312 417.098 310.305 387.105C325.301 372.109 332.8 352.456 332.8 332.8C332.8 313.144 325.301 293.491 310.305 278.495C295.309 263.498 288 256 275.2 230.4C256 243.2 243.201 320 243.201 345.6C201.694 345.6 179.2 332.8 179.2 332.8C179.2 352.456 186.698 372.109 201.694 387.105Z" fill="white"></path>
                                     </svg>
                                 </a>
                             </div>
@@ -42,7 +37,7 @@
                                     <!-- Navigation Links -->
                             <div class="">                            
                                 <a class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-900 transition duration-150 ease-in-out border-b-2 border-indigo-400 dark:border-indigo-300 dark:text-gray-200 focus:outline-none focus:border-indigo-700 h-16"
-                                    href="#">Voto Electrónico</a>
+                                    >Voto Electrónico</a>
                             </div>
 
                         </div>
@@ -162,7 +157,7 @@
                                         </div>
                                         <div class="ml-12">
                                             <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                                                Seleccione la IE en donde está estudiando y luego ingrese su DNI y Código de votación.
+                                                Seleccione la IE en donde está estudiando, luego ingrese su DNI y Código de votación.
                                             </div>
                                         </div>
                                     </div>
@@ -187,11 +182,11 @@
                                             <div class="text-xl text-center font-bold text-indigo-500 bg-indigo-300 rounded-full w-8 h-8">4</div>
                                             <div
                                                 class="ml-4 text-lg font-semibold leading-7 text-gray-600 dark:text-gray-200">
-                                                Confirme su candidato preferido , y ¡listo!...¡ya votaste! XD</div>
+                                                Confirme su candidato preferido , y ¡listo!...¡ya votaste! :)</div>
                                         </div>
                                         <div class="ml-12">
                                             <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                                                Déspues de confirmar le aparecerá un mensaje verde de ¡ EXITO ! , el cuál indica que su voto se hizo de manera exitosa y sin problemas.
+                                                Déspues de confirmar le aparecerá un mensaje verde de ¡ EXITO ! , el cuál indica que su voto se realizó de manera exitosa y sin problemas.
                                             </div>
                                         </div>
                                     </div>

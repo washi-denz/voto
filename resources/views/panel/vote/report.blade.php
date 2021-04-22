@@ -3,8 +3,9 @@
         font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
         text-align: center;
         color: #252525;
-        background-color: #d0cfcf;
         padding: 8px 0;
+        text-transform:uppercase;
+        /*border-bottom:1px solid #ccc;*/
     }
 
     .cuadro {
@@ -25,17 +26,27 @@
         font-size: 11px;
         text-align: left;
         border-collapse: collapse;
+        margin-top:3rem;
     }
 
     table.result th,
     table.result td {
         text-align: left;
         padding: 8px;
+    }
+    table.result td{
         border: 1px solid #c7c7c7;
     }
 
     table.result tr>td:first-child {
         background-color: #f2f2f2;
+    }
+    table tr th{
+        background: steelblue;
+        border:1px solid steelblue; 
+        color:white;
+        text-align:center;
+        padding:8px;
     }
 
     .photo {
@@ -50,22 +61,36 @@
         border-radius: 5px;
         border-color: rgba(156, 163, 175, 0.6);
     }
+    .abstract{
+        font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+        margin-top:1.5rem;
+        border-collapse: collapse;
+        font-size:0.9rem;
+    }
+    .abstract tr th,
+    .abstract tr td{
+        padding:0.2rem 0.5rem;
+        font-size:0.7rem;
+    }
+    .abstract tr td {
+        border:1px solid #c7c7c7;
+    }
+    .abstract tr th{
+            
+    }
 </style>
 
 <h3 class="title">
-    RESULTADO DE ELECCIONES
+    Resultados de Elección Municipio Escalar de la {{ $school->name }}
 </h3>
-
-<hr style="border: 1px solid #d0cfcf;">
 
 <table style="width:100%" class="result">
     <thead>
-        <tr style="background-color: steelblue; color:white">
+        <tr>
             <th style="width: 10%; text-align: center;"></th>
             <th style="width: 54%; text-align: center;">Candidato</th>
             <th style="width: 12%; text-align: center;">Votos</th>
-            <th style="width: 12%; text-align: center;">% global</th>
-            <th style="width: 12%; text-align: center;">% Votos</th>
+            <th style="width: 24%; text-align: center;">% Votos sobre el Total</th>
         </tr>
     </thead>
     <tbody>
@@ -73,25 +98,41 @@
         <tr>
             <td style="text-align: center;">
                 <div class="photo">
-                    <img src="{{ asset($candidate->census->photo) }}" style="width:100%">
+                    <img src="{{ asset($candidate->photo) }}" style="width:100%">
                 </div>
             </td>
             <td>
-                <p style="font-weight: bold; margin:0; font-size:14px;">{{$candidate->census->name}}
-                    {{$candidate->census->last_name}}
+                <p style="font-weight: bold; margin:0; font-size:14px;">{{$candidate->name}}
+                    {{$candidate->last_name}}
                 </p>
                 <p style="margin:0; font-size:12px;">{{$candidate->party_name}}</p>
             </td>
             <td style="text-align: center;">
-                {{$candidate->votes->count()}}
+                {{$candidate->votes}}
             </td>
             <td style="text-align: center;">
-                {{round( ((100/$total)*$candidate->votes->count()), 2)}}%
-            </td>
-            <td style="text-align: center;">
-                {{round( ((100/$emitido)*$candidate->votes->count()), 2)}}%
+                {{round( ((100/$total)*$candidate->votes), 2)}}%
             </td>
         </tr>
         @endforeach
+    </tbody>
+</table>
+
+<table class="abstract">
+    <thead>
+        <tr>
+            <th colspan="2" style="width:100px;text-align:center;">Detalles</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Total padrón</td><td style="text-align:center;">{{ $total }}</td>        
+        </tr>
+        <tr>
+            <td>Número de candidatos</td><td style="text-align:center;" >{{ $candidates->count() }}</td>        
+        </tr>
+        <tr>
+            <td>Actas procesadas</td><td style="text-align:center;" >{{ round((100/$total)*$emitido,2)  }}%</td>        
+        </tr>
     </tbody>
 </table>

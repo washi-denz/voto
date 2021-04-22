@@ -43,12 +43,8 @@
                 style="width: 20rem; display: none;">
                 <a href="#"
                     class="flex items-center px-4 py-3 text-gray-600 hover:text-white hover:bg-indigo-600 -mx-2">
-                    <img class="h-8 w-8 rounded-full object-cover mx-1"
-                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=334&amp;q=80"
-                        alt="avatar">
                     <p class="text-sm mx-2">
-                        <span class="font-bold" href="#">Sara Salah</span> replied on the <span
-                            class="font-bold text-indigo-400" href="#">Upload Image</span> artical . 2m
+                        <span class="font-bold" href="#">Voto Electrónico 1.1</span><br><span> Desarrollado con Laravel 8 </span>
                     </p>
                 </a>
             </div>
@@ -70,6 +66,11 @@
                 style="display: none;">
                 <a href="{{ route('panel.vote.index') }}"
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Resultados</a>
+                <a href="{{ route('panel.candidate.index') }}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Candidatos</a>
+                <a href="{{ route('panel.census.index') }}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Padrón</a>
+                <hr>
                 <form action="{{route('logout')}}" method="post">
                         @csrf
                     <button type="submit"
