@@ -4,10 +4,16 @@
 
 @section('content')
 
-<div>
-    Lista de candidatos
-    <a href="{{ route('panel.candidate.create') }}" class="border border-green-500 bg-green-500 text-white rounded-md px-3 py-2 m-1 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline uppercase text-xs">Nuevo candidato</a> 
-</div>
+<x-sub-title>
+    <x-slot name="title">
+        Lista de candidatos
+    </x-slot>
+    
+    <x-slot name="content1">
+        <a href="{{ route('panel.candidate.create') }}" class="border border-green-500 bg-green-500 text-white rounded-md px-3 py-2 mb-2 ml-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline uppercase text-xs inline-block">Nuevo candidato</a>    
+    </x-slot>
+     
+</x-sub-title>
 
 @include('panel.components.message')
 
@@ -109,5 +115,4 @@
 <div class="py-5">
     {{ $candidates->onEachSide(0)->links() }}
 </div>
-
 @endsection

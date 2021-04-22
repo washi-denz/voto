@@ -5,13 +5,14 @@
 @section('content')
 <div class="py-0">
 
-    <div class="">
-        <h4 class="text-lg font-normal uppercase">
-            Editar candidato | {{ $candidate->census->name }}  {{ $candidate->census->last_name }}        
-        </h4>
-    </div>
+    <x-sub-title>
+        <x-slot name="title">Editar candidato</x-slot>
+        <x-slot name="content1">
+            <a href="{{ route ('panel.candidate.index') }}" class="border border-gray-500 bg-gray-100 text-gray-700 hover:text-white rounded-md px-3 py-2 mb-2 ml-2 transition duration-500 ease select-none hover:bg-gray-600 focus:outline-none focus:shadow-outline text-xs inline-block"> < Atrás</a>    
+        </x-slot>
+    </x-sub-title>
     
-    <div class="bg-white my-6 grid justify-items-center">
+    <div class="my-6 grid justify-items-center">
 
         @include('panel.components.message')
 
@@ -107,8 +108,7 @@
                 </div>
 
                 <div class="mx-4 pb-4">
-                    <div class="w-full text-right"> 
-                        <a href="{{ route ('panel.candidate.index') }}" class="text-blue-400 cursor-pointer">Cancelar</a>          
+                    <div class="w-full text-right">
                         <button type="submit"
                             class="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-1 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline uppercase">
                             <i class="fa fa-save"></i>

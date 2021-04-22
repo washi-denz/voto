@@ -5,11 +5,12 @@
 @section('content')
 <div class="py-0">
 
-    <div class="">
-        <h4 class="text-lg font-normal uppercase">
-            Editar candidato | {{ $census->name }} {{ $census->last_name }}
-        </h4>
-    </div>
+    <x-sub-title>
+        <x-slot name="title">Editar Elector</x-slot>
+        <x-slot name="content1">
+            <a href="{{ route ('panel.census.index') }}" class="border border-gray-500 bg-gray-100 text-gray-700 hover:text-white rounded-md px-3 py-2 mb-2 ml-2 transition duration-500 ease select-none hover:bg-gray-600 focus:outline-none focus:shadow-outline text-xs inline-block"> < Atrás</a>    
+        </x-slot>
+    </x-sub-title>
 
     <div class="my-6 grid justify-items-center">
         @include('panel.components.message')

@@ -81,7 +81,7 @@
 </style>
 
 <h3 class="title">
-    Resultados de Elección Municipio Escalar de la {{ $school->name }}
+    Resultados de Elección Municipio Escolar de la {{ $school->name }}
 </h3>
 
 <table style="width:100%" class="result">

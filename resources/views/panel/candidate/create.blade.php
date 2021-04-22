@@ -5,11 +5,12 @@
 @section('content')
 <div class="py-0">
 
-    <div class="">
-        <h4 class="text-lg font-normal uppercase">
-            Crear nuevo candidato
-        </h4>
-    </div>
+    <x-sub-title>
+        <x-slot name="title">Crear nuevo candidato</x-slot>
+        <x-slot name="content1">        
+            <a href="{{ route ('panel.candidate.index') }}" class="border border-gray-500 bg-gray-100 text-gray-700 hover:text-white rounded-md px-3 py-2 mb-2 ml-2 transition duration-500 ease select-none hover:bg-gray-600 focus:outline-none focus:shadow-outline text-xs inline-block"> < Atrás</a>    
+        </x-slot>
+    </x-sub-title>
 
     <div class="my-2 grid justify-items-center">
 
@@ -124,7 +125,7 @@
                         </div>
                         <div class="mx-4 mt-6">    
                             <div class="w-full text-center md:text-right">
-                                <a href="{{ route ('panel.candidate.index') }}" class="border border-gray-100 bg-gray-100 text-gray-600 rounded-md px-4 py-2 m-1 transition duration-500 ease select-none hover:bg-gray-600 hover:text-gray-50 focus:outline-none focus:shadow-outline uppercase">Cancelar</a>
+                                {{--<a href="{{ route ('panel.candidate.index') }}" class="border border-gray-100 bg-gray-100 text-gray-600 rounded-md px-4 py-2 m-1 transition duration-500 ease select-none hover:bg-gray-600 hover:text-gray-50 focus:outline-none focus:shadow-outline uppercase">Cancelar</a>--}}
                                 <button type="submit"
                                     class="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-1 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline uppercase">
                                     <i class="fa fa-save"></i>
