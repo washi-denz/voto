@@ -13,6 +13,9 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        
+        <!-- livewire -->
+        @livewireStyles
 
     </head>
 
@@ -39,6 +42,9 @@
         </div>
         <!-- Custom JS -->
         <script src="{{ asset('js/custom.js') }}"></script>
+        
+        <!-- livewire -->
+        @livewireScripts
     </body>
     
 </html>
