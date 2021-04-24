@@ -71,7 +71,7 @@
                 <tbody class="bg-white">
                     @foreach ($censuses as $census)
                         <tr>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200">
                                 <div class="flex items-center">
                                     <div class="flex-shrink-0 h-10 w-10">
                                         <img class="h-10 w-10 rounded-full"
@@ -89,7 +89,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200">
 
                                 <div class="flex justify-center ">
                                     <div class="text-center">
@@ -115,10 +115,10 @@
                                 </div>
 
                             </td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200">
                                 <div class="text-sm">{{ $census->code }}</div>
                             </td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200">
 
                                 @if ($census->condition == false)
                                     <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">No Emitido</span>
@@ -128,7 +128,7 @@
 
                             </td>
 
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200">
 
                                 <div class="flex item-center justify-center">
                                     <a href="{{ route('panel.census.edit', $census) }}"

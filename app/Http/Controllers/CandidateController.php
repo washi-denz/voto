@@ -97,9 +97,9 @@ class CandidateController extends Controller
             ->with("type", "error");
     }
 
-    public function show(Candidate $candidate)
+    public function show()
     {
-        return view('panel.candidate.show', ['candidate' => $candidate]);
+        return view('panel.candidate.show');
     }
 
     public function edit(Candidate $candidate)

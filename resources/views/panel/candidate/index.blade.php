@@ -11,6 +11,7 @@
     
     <x-slot name="content1">
         <a href="{{ route('panel.candidate.create') }}" class="border border-green-500 bg-green-500 text-white rounded-md px-3 py-2 mb-2 ml-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline uppercase text-xs inline-block">Nuevo candidato</a>    
+        <a href="{{ url('panel/candidate/show') }}" class="border border-green-500 bg-green-500 text-white rounded-md px-3 py-2 mb-2 ml-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline uppercase text-xs inline-block">SHOW</a>
     </x-slot>
      
 </x-sub-title>
@@ -51,31 +52,31 @@
                 <tbody class="bg-white">
                     @foreach ($candidates as $key => $candidate)
                         <tr>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200">
                                 <div class="text-sm">{{ $key+1 }}</div>
                             </td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200">
                                 <div class="text-sm">{{ $candidate->document }}</div>
                             </td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200">
                                 <div class="text-sm">{{ $candidate->name }} {{ $candidate->last_name }}</div>
                             </td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200">
                                 <div class="text-sm">
                                     <img class="w-10 h-10 rounded-full border-gray-200 border" src="{{ asset($candidate->photo) }}" />
                                 </div>
                             </td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200">
                                 <div class="text-sm">
                                     <img class="w-10 h-10 rounded-full border-gray-200 border" src="{{ asset($candidate->logo) }}" />
                                 </div>
                             </td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200">
                                 <div class="text-sm">
                                     {{ $candidate->party_name }}
                                 </div>
                             </td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200">
 
                                 <div class="flex item-center justify-center">
                                     <a href="{{ route('panel.candidate.edit', $candidate->id) }}"

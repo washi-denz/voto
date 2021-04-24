@@ -168,7 +168,7 @@
                 <tbody class="bg-white">
                     @foreach ($candidates as $candidate)
                         <tr>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200">
 
                                 <div class="flex items-center">
                                     <div class="relative">
@@ -189,10 +189,10 @@
                                 </div>
 
                             </td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200">
                                 <p class="text-center">{{ $candidate->votes }}</p>
                             </td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200">
 
                                 <div class="mt-4 lg:mt-0">
                                     <div class="bg-gray-400 w-full h-4 rounded-lg mt-2 overflow-hidden">

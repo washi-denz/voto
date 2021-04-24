@@ -8,6 +8,7 @@ use App\Http\Controllers\VoteController;
 use App\Http\Controllers\VotingResultController;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\SchoolController;
+use App\Http\Livewire\ShowCandidate;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,8 @@ Route::prefix('panel')->name('panel.')->group(function () {
     Route::resource('/candidate', CandidateController::class)->middleware('auth');
 
     Route::post('/candidate/create', [CandidateController::class, 'data_census'])->name('candidate.create.data_census')->middleware('auth');
+
+    Route::get('/showcandidate',ShowCandidate::class)->name('panel.showcandidate')->middleware('auth');
 });
 
 

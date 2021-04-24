@@ -9,7 +9,7 @@
                 <path d="M201.694 387.105C231.686 417.098 280.312 417.098 310.305 387.105C325.301 372.109 332.8 352.456 332.8 332.8C332.8 313.144 325.301 293.491 310.305 278.495C295.309 263.498 288 256 275.2 230.4C256 243.2 243.201 320 243.201 345.6C201.694 345.6 179.2 332.8 179.2 332.8C179.2 352.456 186.698 372.109 201.694 387.105Z" fill="white"></path>
             </svg>
             
-            <span class="text-white text-xl mx-2 font-semibold">Voto Electrónico 2.0</span>
+            <span class="text-white text-xl mx-2 font-semibold">Voto Electrónico 3.0</span>
         </div>
     </div>
 
