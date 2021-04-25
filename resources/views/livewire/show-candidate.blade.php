@@ -1,9 +1,19 @@
 <div>
+
+    <x-sub-title>
+        <x-slot name="title">
+            Lista de candidatos
+        </x-slot>
+        <x-slot name="content2">
+            @livewire('create-candidate')
+        </x-slot>
+    </x-sub-title>
+
     {{-- $search --}}
     <div class="mb-3">
         <input type="text" wire:model="search">
     </div>
-    <i class="fad home"></i>
+
     <table class="w-full">
         <thead>
             <tr class="bg-indigo-500 text-white">

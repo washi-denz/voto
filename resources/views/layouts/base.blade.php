@@ -13,6 +13,7 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         
         <!-- Fonts --->
         <link rel="stylesheet" href="{{ asset('fonts/fontawesome-free/css/all.min.css') }}">
@@ -46,6 +47,17 @@
 
         <!-- livewire -->
         @livewireScripts
+
+        <script>
+            Livewire.on('alert',function(message){
+                Swal.fire(
+                    'The Internet?',
+                    message,
+                    'question'
+                )
+            });
+        </script>
+
     </body>
     
 </html>

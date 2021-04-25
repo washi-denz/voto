@@ -14,6 +14,9 @@ class ShowCandidate extends Component
     public $sort = 'id';
     public $direction = 'asc';
 
+    //protected $listeners = ['render'=>'render'];//El método 'render' escucha otro método con el nombre 'render' de otra clase
+    protected $listeners = ['render'];//Se ejecuta solo el método render
+
     public function render()
     {
         $candidates = Candidate::where('party_name','LIKE','%'.$this->search.'%')
