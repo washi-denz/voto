@@ -8,19 +8,9 @@ use App\Http\Controllers\VoteController;
 use App\Http\Controllers\VotingResultController;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\SchoolController;
+
 use App\Http\Livewire\ShowCandidate;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
+use App\Http\Livewire\IndexVote;
 
 // ADMIN
 Route::prefix('panel')->name('panel.')->group(function () {
@@ -43,11 +33,19 @@ Route::prefix('panel')->name('panel.')->group(function () {
 Route::get('/', [SchoolController::class, 'index'])->name('portal.home');
 
 Route::prefix('portal')->name('portal.')->group(function (){
+    Route::get('/{school}',IndexVote::class)->name('index.school');
+});
+
+/*
+Route::get('/', [SchoolController::class, 'index'])->name('portal.home');
+
+Route::prefix('portal')->name('portal.')->group(function (){
     Route::get('/{school}', [SchoolController::class,'index_school'])->name('index.school');
     Route::resource('/vote', VoteController::class);
     Route::get('/voto/confirm', [VoteController::class, 'show_confirm'])->name('show.confirm');
     Route::post('/voto/confirm/{id}', [VoteController::class, 'update_confirm'])->name('update.confirm');
 });
+*/
 
 /*
 Route::get('/', [SchoolController::class, 'index'])->name('portal.home');

@@ -35,6 +35,10 @@ Voto Electrónico Elección Municipio Escolar 2021
                 </div>
             </div>
         </form>
+
+        <div class="flex justify-center">
+            <a  href="" class="focus:outline-none transition duration-500 w-auto py-2 px-4 font-semibold text-gray-200 {{ Session::get('bg') }} hover:bg-{{ Session::get('color') }}-800 ring-2 ring-gray-200 m-4 inline-block">Atrás</a>
+        </div>
         
     </div>
 
