@@ -6,38 +6,60 @@ use Livewire\Component;
 use App\Models\School;
 use App\Models\Census;
 use App\Models\User;
+use App\Models\Candidate;
+use App\Models\Vote;
+use Illuminate\Support\Facades\Hash;
 
 class IndexVote extends Component
 {
     public $school;
-    public $view = 0;//config
-    public $document='48996878',$code='EC83';
+    public $view = 0;//vista
+    public $open_modal = false;//modal
+    public $document ='71978836',$code='5B67';
+
+    public $listeners = ['confirm'];
 
     protected $rules = [
         'document' => 'required|max:8',
         'code'     => 'required|Max:4'
     ];
 
-    public $school_id = 1;//config
+    public $school_id;
+
+    public $census;
+    public $candidates;
+    public $candidate;
 
     //protected $listeners = ['selection'=>'showSelection'];
-
-    //selection
+    
     public $data;
+
+    public function mount($school){
+
+        $school = School::where('slug','=',$school)->first();
+
+        if($school){
+
+            $this->school_id = $school->id;
+
+        }else{
+            redirect()->to('/');
+        }
+    }
  
     public function setData(){
 
-        //validadmos
+        //validamos
         $this->validate();
 
-        //comprueba
+        //comprueba existencia de code y document
         $census = Census::where('code','=',$this->code)->where('document','=',$this->document)->first();
 
         if ($census) {
 
-            $candidates = User::select('*')->join('candidates','users.id','=','candidates.users_id')->where('users.school_id','=',$this->school_id)->count();
+           $candidates = Candidate::select('*')->join('users','candidates.users_id','=','users.id')->where('users.school_id','=',$this->school_id)->get();
 
-            if($candidates > 1){
+            if(count($candidates) > 1){
 
                 if ($census->condition == false) {
 
@@ -45,17 +67,11 @@ class IndexVote extends Component
 
                     if($users){
 
-                        //creando sesión tmp      
-                        //$request->session()->put('census_id',$census->id);//para crear el hash
-                        //$request->session()->put('school_id',$request->school_id);//
                         //Cambio de vista
                         $this->view=1;
-                        //$this->emitTo('selection-vote','render');
+                        $this->census = $census;
 
-                        $this->emit('selection',$census->id);
                         $this->emit('alert','¿ Elige su candidato ?');
-            
-                        //return redirect()->route('portal.vote.show',$census);
 
                     }else{
                         $this->emit('alert','El DNI o Código no pertenece a esta IE. Elija su IE correcta o contacte con la Comisión Electoral.');  
@@ -71,10 +87,56 @@ class IndexVote extends Component
         }
 
     }
+
+    function selection(Candidate $candidate){
+        $this->candidate  = $candidate;
+        $this->open_modal = true;
+    }
+
+    public function confirm(Candidate $candidate,$document){
+
+        $census = Census::where('document','=',$document)->first();
+            
+        $hash = Hash::make($document);//hash dni
+
+        $data = [
+            'candidate_id' => $candidate['id'],
+            'hash'         => $hash
+        ];
+        
+        $success = Vote::create($data);
+
+        if($success){
+
+            // Actualizar
+            Census::where('id','=',$census->id)->update(['condition'=>1]);
+
+            // reset
+            $this->reset(['document','code']);
+
+            //modal
+            $this->open_modal=false;
+
+            //Cambio de vista
+            $this->view = 0;
+
+            $this->emit('alert','TERMINÓ.....');
+        }else{
+            redirect()->to('/portal/'.$this->school);
+        }
+    }
     
     public function render()
     {   
-        $school = School::all();
-        return view('livewire.index-vote',['school'=>$school])->layout('layouts.main');
+        //candidates
+        $candidates = Candidate::select('candidates.logo','candidates.id','candidates.census_id','candidates.party_name','censuses.photo','censuses.name','censuses.last_name')
+        ->join('users','candidates.users_id','=','users.id')
+        ->join('censuses','censuses.id','=','candidates.census_id')
+        ->where('users.school_id','=',$this->school_id)
+        ->get();
+
+        $this->candidates= $candidates;
+
+        return view('livewire.index-vote',['candidates'=>$this->candidates])->layout('layouts.main');        
     }
 }

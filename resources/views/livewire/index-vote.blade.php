@@ -1,5 +1,6 @@
 <div>
-    @if($view == 0)
+
+@if($view == 0)
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-6">
 
         <div class="px-3">
@@ -30,9 +31,64 @@
         </div>
 
     </div>
-    @else
-        @livewire('selection-vote')
-    @endif
-        
+
+@else
+
+    <p class="text-center text-gray-50 text-sm pt-3">{{ $census['name'] }} {{ $census['last_name'] }} con DNI : {{ $census['document'] }}</p>
+
+    <h1 class="text-center text-gray-50 text-2xl font-medium mb-3">Seleccione su candidato</h1>
+    
+    <div class="bg-indigo-400 bg-opacity-30 rounded mx-2 md:mx-3 shadow-lg">
+        <div class="flex flex-wrap md:justify-center gap-3 text-center mx-5 py-5 selection">
+            
+            @foreach($candidates as $obj)
+                
+                <input type="button" id="candidate_id{{ $obj->id }}" wire:click="selection({{ $obj->id }})" class="hidden">
+
+                <label for="candidate_id{{ $obj->id }}" class="flex items-center md:flex-col gap-2 bg-gray-50 rounded p-2 w-full md:w-40 cursor-pointer transition duration-300 hover:bg-yellow-300 border-4 border-indigo-900 border-opacity-90">
+                    <img src="{{ asset($obj->photo) }}" alt="" class="flex-none w-20 h-20 md:w-full md:h-40 rounded">
+                    <img src="{{ asset($obj->logo) }}" alt="" class="flex-none w-20 h-20 md:w-full md:h-24 rounded-full md:rounded">
+                    <div class="flex-grow text-center">
+                        <h3 class="text-indigo-900 font-bold text-sm text-normal sm:text-lg md:text-lg mt-0 md:mt-3 px-2">{{ $obj->party_name }}</h3>
+                        <p class="mb-3 text-xs sm:text-sm md:text-sm">{{ $obj->name }} {{ $obj->last_name }}</p>
+                    </div>
+                </label>
+
+            @endforeach
+            
+        </div>
+    </div>
+
+    <div class="flex justify-center">
+        <a  href="" class="focus:outline-none transition duration-500 w-auto py-2 px-4 font-semibold text-gray-200 bg-indigo-800 hover:bg-indigo-800 ring-2 ring-gray-200 m-4 inline-block">Atrás</a>
+    </div>
+
+
+    <x-modal wire:model="open_modal">
+
+        <h3 class="text-lg font-medium">Confirme su selección:</h3>
+
+        <div class="flex justify-center">
+            <div class="bg-indigo-400 bg-opacity-30 rounded mx-3 shadow-lg p-4 md:w-1/2">
+                <div class="flex gap-2">
+                    <img src="{{ asset($candidate['photo']) }}" class="flex-none w-32 h-32 border-2 border-indigo-900 rounded">
+                    <img src="{{ asset($candidate['logo']) }}" class="flex-grow w-32 h-32 border-2 border-indigo-900 rounded">
+                </div>
+                <div class="flex-grow text-center">
+                    <h3 class="text-indigo-200 text-xl font-medium mt-3">{{ $candidate['party_name'] }}</h3>
+                    <p class="text-indigo-200 text-sm">{{ $candidate['name'] }} {{ $candidate['last_name'] }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="float-right m-2">
+            <input type="button" class=" bg-gray-200 p-2 rounded cursor-pointer" value="CANCELAR" wire:click="$set('open_modal',false)">
+            <input type="button" class=" bg-green-400 p-2 rounded cursor-pointer" value="CONFIRMAR" wire:click="confirm({{ $candidate['id'] }},{{ $census['document'] }})" wire.loading.attr="disabled" wire:target="save" class="disabled:bg-opacity-25">
+            {{-- span de carga--}}
+            {{--<span wire:loading wire:target="save" >Cargando...</span>--}}
+        </div>
+    
+    </x-modal>
+@endif
 
 </div>

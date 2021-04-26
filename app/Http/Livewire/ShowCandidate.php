@@ -8,6 +8,7 @@ use App\Models\Candidate;
 
 class ShowCandidate extends Component
 {
+    
     use WithPagination;
 
     public $search;
@@ -30,4 +31,5 @@ class ShowCandidate extends Component
     public function order($column_name=''){
         $this->sort = $column_name;
     }
+    
 }

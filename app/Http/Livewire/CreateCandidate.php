@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CreateCandidate extends Component
 {
+    
     public $open = false;
     public $logo,$party_name,$census_id;
 
@@ -45,4 +46,5 @@ class CreateCandidate extends Component
     {
         return view('livewire.create-candidate');
     }
+    
 }
