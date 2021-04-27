@@ -15,7 +15,7 @@ class IndexVote extends Component
     public $school;
     public $view = 0;//vista
     public $open_modal = false;//modal
-    public $document ='71978836',$code='5B67';
+    public $document,$code;
 
     public $listeners = ['confirm'];
 
@@ -57,9 +57,9 @@ class IndexVote extends Component
 
         if ($census) {
 
-           $candidates = Candidate::select('*')->join('users','candidates.users_id','=','users.id')->where('users.school_id','=',$this->school_id)->get();
+           $candidates = Candidate::select('*')->join('users','candidates.users_id','=','users.id')->where('users.school_id','=',$this->school_id)->count();
 
-            if(count($candidates) > 1){
+            if($candidates > 1){
 
                 if ($census->condition == false) {
 
@@ -71,36 +71,44 @@ class IndexVote extends Component
                         $this->view=1;
                         $this->census = $census;
 
-                        $this->emit('alert','¿ Elige su candidato ?');
+                        $this->document = $census->document;
+
+                        $this->emit('alert-info','Seleccione su candidato.');
 
                     }else{
-                        $this->emit('alert','El DNI o Código no pertenece a esta IE. Elija su IE correcta o contacte con la Comisión Electoral.');  
+                        $this->emit('alert-error','El DNI o Código no pertenece a esta IE. Elija su IE correcta o contacte con la Comisión Electoral.');  
                     }
                 }else{
-                    $this->emit('alert','Atención!!! Ud ya sufragó, si hay error contacte con la Comisión Electoral.');
+                    $this->emit('alert-info','Atención!!! Ud ya sufragó, si hay error contacte con la Comisión Electoral.');
                 }
             }else{
-                $this->emit('alert','Aún no existe mínimo de candidatos.Consulte con la Comisión Electoral.');
+                $this->emit('alert-info','Aún no existe mínimo de candidatos.Consulte con la Comisión Electoral.');
             }           
         }else{
-            $this->emit('alert','El DNI o Código es INVÁLIDA, si persiste el problema contacte con la Comisión Electoral.');
+            $this->emit('alert-error','El DNI o Código es INVÁLIDA, si persiste el problema contacte con la Comisión Electoral.');
         }
 
     }
 
     function selection(Candidate $candidate){
-        $this->candidate  = $candidate;
+
+        $candidate = Candidate::select('candidates.logo','candidates.id','candidates.party_name','censuses.photo','censuses.name','censuses.last_name')
+                                    ->join('censuses','candidates.census_id','=','censuses.id')
+                                ->where('candidates.id','=',$candidate['id'])
+                                ->first();
+
+        $this->candidate  = $candidate;        
         $this->open_modal = true;
     }
 
-    public function confirm(Candidate $candidate,$document){
+    public function confirm($candidate_id){
 
-        $census = Census::where('document','=',$document)->first();
+        $census = Census::where('document','=',$this->document)->first();
             
-        $hash = Hash::make($document);//hash dni
+        $hash = Hash::make($this->document);//hash dni
 
         $data = [
-            'candidate_id' => $candidate['id'],
+            'candidate_id' => $candidate_id,
             'hash'         => $hash
         ];
         
@@ -120,7 +128,7 @@ class IndexVote extends Component
             //Cambio de vista
             $this->view = 0;
 
-            $this->emit('alert','TERMINÓ.....');
+            $this->emit('alert-success','¡¡ FELICIDADES !! SU VOTO SE REALIZÓ CON ÉXITO');
         }else{
             redirect()->to('/portal/'.$this->school);
         }

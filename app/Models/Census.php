@@ -23,15 +23,15 @@ class Census extends Model
 
     //Query Scope
 
-    public function ScopeNameLastName($query, $name)
+    public function ScopeSearchName($query,$name)
     {
         if ($name)
-            return $query->where('name', 'LIKE', "%$name%");
+            return $query->Where('censuses.name', 'LIKE', "%$name%")->orWhere('censuses.last_name','LIKE',"%$name%");
     }
 
-    public function ScopeSearchDni($query, $dni)
+    public function ScopeSearchDni($query,$dni)
     {
         if ($dni)
-            return $query->where('document', 'LIKE', "%$dni%");
+            return $query->where('censuses.document', 'LIKE', "%$dni%");
     }
 }

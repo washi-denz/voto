@@ -1,0 +1,1 @@
+<a href="{{ $_SERVER['HTTP_REFERER'] }}" class="border border-gray-500 bg-gray-100 text-gray-700 hover:text-white rounded-md px-3 py-2 mb-2 ml-2 transition duration-500 ease select-none hover:bg-gray-600 focus:outline-none focus:shadow-outline text-xs inline-block"> < Atrás</a>

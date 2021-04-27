@@ -7,8 +7,8 @@
 
     <x-sub-title>
         <x-slot name="title">Editar Elector</x-slot>
-        <x-slot name="content1">
-            <a href="{{ route ('panel.census.index') }}" class="border border-gray-500 bg-gray-100 text-gray-700 hover:text-white rounded-md px-3 py-2 mb-2 ml-2 transition duration-500 ease select-none hover:bg-gray-600 focus:outline-none focus:shadow-outline text-xs inline-block"> < Atrás</a>    
+        <x-slot name="content1">            
+            <x-return/>
         </x-slot>
     </x-sub-title>
 
@@ -42,7 +42,7 @@
                     </div>
                     <div class="col-span-3 sm:col-span-2 grid grid-cols-4 gap-4">
                         <div class="lg:col-span-2 col-span-4">
-                            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                            <label class="block tracking-wide text-grey-darker text-xs font-bold mb-2"
                                 for="name">
                                 Nombres
                             </label>
@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="lg:col-span-2 col-span-4">
-                            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                            <label class="block tracking-wide text-grey-darker text-xs font-bold mb-2"
                                 for="last_name">
                                 Apellidos
                             </label>
@@ -70,7 +70,7 @@
                         </div>
 
                         <div class="sm:col-span-2 col-span-4">
-                            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                            <label class="block tracking-wide text-grey-darker text-xs font-bold mb-2"
                                 for="grade">
                                 Grado
                             </label>
@@ -95,7 +95,7 @@
                             @enderror
                         </div>
                         <div class="sm:col-span-2 col-span-4">
-                            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                            <label class="block tracking-wide text-grey-darker text-xs font-bold mb-2"
                                 for="group">
                                 Grupo
                             </label>
@@ -120,7 +120,7 @@
                 <div class="grid sm:grid-cols-3 gap-4 mx-4 pb-4">
                     <div class="sm:col-span-1 col-span-3"></div>
                     <div class="sm:col-span-1 col-span-3">
-                        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                        <label class="block tracking-wide text-grey-darker text-xs font-bold mb-2"
                             for="document">
                             Numero Documento
                         </label>
@@ -133,7 +133,7 @@
                         @enderror
                     </div>
                     <div class="sm:col-span-1 col-span-3">
-                        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                        <label class="block tracking-wide text-grey-darker text-xs font-bold mb-2"
                             for="phone">
                             Numero Celular
                         </label>
@@ -150,7 +150,7 @@
                 <div class="mx-4 pb-4">
                     <div class="w-full text-right">
                         <button type="submit"
-                            class="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-1 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline uppercase">
+                            class="border uppercase border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-1 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline">
                             <i class="fa fa-save"></i>
                             Guardar
                         </button>

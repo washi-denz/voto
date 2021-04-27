@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>@yield('title','Voto electrónico')</title>
+        <title>@yield('title','Voto Virtual')</title>
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -37,7 +37,7 @@
                                     <!-- Navigation Links -->
                             <div class="">                            
                                 <a class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-900 transition duration-150 ease-in-out border-b-2 border-indigo-400 dark:border-indigo-300 dark:text-gray-200 focus:outline-none focus:border-indigo-700 h-16"
-                                    >Voto Electrónico</a>
+                                    >Voto Virtual</a>
                             </div>
 
                         </div>
@@ -102,7 +102,7 @@
 
                                         @endif
 
-                                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-8">
+                                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2_ md:grid-cols-3 md:gap-8">
                                             @foreach($schools as $school)
                                                 <a href="{{url('portal/'.$school->slug)}}" class="sm:flex bg-white rounded-lg shadow-md p-6 block transition duration-500 group bg-gray-300 hover:bg-blue-400 hover:border-indigo-900 hover:shadow-sm bg-opacity-25 relative">
                                                     <div class="sm:flex-none">
@@ -134,7 +134,7 @@
                                 
                                     <div class="p-6 bg-green-200">
                                         <div class="flex items-center">
-                                            <div class="text-xl text-center font-bold text-green-500 bg-green-300 rounded-full w-8 h-8">1</div>
+                                            <div class="flex-none text-xl text-center font-bold text-green-500 bg-green-300 rounded-full w-8 h-8 pt-1 md:p-0">1</div>
                                             <div
                                                 class="ml-4 text-lg font-semibold leading-7 text-gray-600 dark:text-gray-200">
                                                 <a href="https://laravel.com/docs">Recibe SMS con tu código de votación</a>
@@ -142,14 +142,14 @@
                                         </div>
                                         <div class="ml-12">
                                             <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                                                Si el mensaje no te llegó, consulte con la Comisión Electoral o con la persona encargada del Voto Electrónico.
+                                                Si el mensaje no te llegó, consulte con la Comisión Electoral o con la persona encargada del Voto Virtual.
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="p-6 bg-yellow-200 border-t border-yellow-200 dark:border-yellow-700 md:border-t-0 md:border-l">
                                         <div class="flex items-center">
-                                            <div class="text-xl text-center font-bold text-yellow-500 bg-yellow-300 rounded-full w-8 h-8">2</div>
+                                            <div class="flex-none text-xl text-center font-bold text-yellow-500 bg-yellow-300 rounded-full w-8 h-8 pt-1 md:p-0">2</div>
                                             <div
                                                 class="ml-4 text-lg font-semibold leading-7 text-gray-600 dark:text-gray-200">
                                                 <a href="https://laracasts.com">Ingrese su DNI y código de votación</a>
@@ -164,22 +164,22 @@
 
                                     <div class="p-6 bg-pink-200 border-t border-pink-200 dark:border-pink-700">
                                         <div class="flex items-center">
-                                            <div class="text-xl text-center font-bold text-pink-500 bg-pink-300 rounded-full w-8 h-8">3</div>
+                                            <div class="flex-none text-xl text-center font-bold text-pink-500 bg-pink-300 rounded-full w-8 h-8 pt-1 md:p-0">3</div>
                                             <div
                                                 class="ml-4 text-lg font-semibold leading-7 text-gray-600 dark:text-gray-200">
-                                                <a href="https://tailwindcss.com/">Elige su candidato</a>
+                                                <a href="https://tailwindcss.com/">Seleccione su candidato</a>
                                             </div>
                                         </div>
                                         <div class="ml-12">
                                             <div class="mt-2 text-sm text-gray-500 dark:text-gray-400"> 
-                                                El mínimo de candidatos elegibles son dos.
+                                                {{-- El mínimo de candidatos elegibles son dos.--}}
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="p-6 bg-indigo-200 border-t border-indigo-200 dark:border-indigo-700 md:border-l">
                                         <div class="flex items-center">
-                                            <div class="text-xl text-center font-bold text-indigo-500 bg-indigo-300 rounded-full w-8 h-8">4</div>
+                                            <div class="flex-none text-xl text-center font-bold text-indigo-500 bg-indigo-300 rounded-full w-8 h-8 pt-1 md:p-0">4</div>
                                             <div
                                                 class="ml-4 text-lg font-semibold leading-7 text-gray-600 dark:text-gray-200">
                                                 Confirme su candidato preferido , y ¡listo!...¡ya votaste! :)</div>

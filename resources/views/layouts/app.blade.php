@@ -11,6 +11,13 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
+        <style>
+            span[aria-current="page"]>span{
+                background:#3B82F6;
+                color:white;
+            }
+        </style>
+
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
         

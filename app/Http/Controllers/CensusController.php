@@ -26,7 +26,8 @@ class CensusController extends Controller
         ];
 
         //Búsqueda
-        $dni = $request->get('document');
+        $dni  = $request->get('document');
+        $name = $request->get('name');
 
         //Identificar a que School pertenece el login actual
         $school_id = Auth::user()->school_id;
@@ -42,7 +43,7 @@ class CensusController extends Controller
         $censuses = Census::select('censuses.id','censuses.document','censuses.code','censuses.name','censuses.last_name','censuses.phone','censuses.photo','censuses.condition')
                 ->join('users','censuses.users_id','=','users.id')
             ->where('users.school_id','=',$school_id)
-            ->SearchDni($dni);
+            ->SearchDni($dni)->SearchName($name);
 
         if ($request->has('filter') && in_array($request->filter, $columns)) {
             $filter = trim($request->filter);
@@ -53,6 +54,7 @@ class CensusController extends Controller
             $queries['order']  = $order;
         } else {
             $censuses->orderBy('name', 'asc');
+            //$censuses->orderBy('id', 'asc');
         }
         return $censuses->paginate(15)->appends($queries);
     }

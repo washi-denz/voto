@@ -3,10 +3,10 @@
 @if($view == 0)
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-6">
 
-        <div class="px-3">
-            <!--tilte big-->
-            IMG
-            <!--/title big-->
+        <div class="px-3 bg-gray-300_">
+            <div class="hidden md:block mt-6">
+                <img src="{{ asset('images/vote/vote_group.svg') }}" class="w-75 mx-auto">
+            </div>
         </div>
         <div class="px-3 text-center md:text-left">
 
@@ -26,7 +26,7 @@
             <small class="text-red-400 block">{{ $message }}</small>
             @enderror
 
-            <button type="button" wire:click="setData" class="focus:outline-none transition duration-500 w-32 py-2 px-2 font-semibold text-gray-200 {{ Session::get('bg') }} hover:bg-indigo-800 ring-2 ring-gray-200 m-2">Ingresar</button>
+            <button type="button" wire:click="setData" class="focus:outline-none transition duration-500 w-32 py-2 px-2 font-semibold text-gray-200 bg-indigo-900 hover:bg-indigo-800 ring-2 ring-gray-200 m-2">Ingresar</button>
 
         </div>
 
@@ -60,13 +60,13 @@
     </div>
 
     <div class="flex justify-center">
-        <a  href="" class="focus:outline-none transition duration-500 w-auto py-2 px-4 font-semibold text-gray-200 bg-indigo-800 hover:bg-indigo-800 ring-2 ring-gray-200 m-4 inline-block">Atrás</a>
+        <a  href="{{ url('portal/'.$school) }}" class="focus:outline-none transition duration-500 w-auto py-2 px-4 font-semibold text-gray-200 bg-indigo-900 hover:bg-indigo-800 ring-2 ring-gray-200 m-4 inline-block">Atrás</a>
     </div>
 
 
     <x-modal wire:model="open_modal">
 
-        <h3 class="text-lg font-medium">Confirme su selección:</h3>
+        <h3 class="text-gray-50 text-center text-lg font-medium py-3">Confirme su selección</h3>
 
         <div class="flex justify-center">
             <div class="bg-indigo-400 bg-opacity-30 rounded mx-3 shadow-lg p-4 md:w-1/2">
@@ -81,11 +81,9 @@
             </div>
         </div>
 
-        <div class="float-right m-2">
-            <input type="button" class=" bg-gray-200 p-2 rounded cursor-pointer" value="CANCELAR" wire:click="$set('open_modal',false)">
-            <input type="button" class=" bg-green-400 p-2 rounded cursor-pointer" value="CONFIRMAR" wire:click="confirm({{ $candidate['id'] }},{{ $census['document'] }})" wire.loading.attr="disabled" wire:target="save" class="disabled:bg-opacity-25">
-            {{-- span de carga--}}
-            {{--<span wire:loading wire:target="save" >Cargando...</span>--}}
+        <div class="flex justify-center my-3">
+            <button wire:click="$set('open_modal',false)" class="focus:outline-none transition duration-500 w-auto py-2 px-4 font-semibold text-gray-200 bg-indigo-900 hover:bg-indigo-800 ring-2 ring-gray-200 m-2 cursor-pointer">Cancelar</button>
+            <button wire:click="confirm({{ $candidate['id'] }})" class="focus:outline-none transition duration-500 w-32 py-2 px-2 font-semibold text-white bg-green-400 hover:bg-green-600 ring-2 ring-green-500 m-2">Confirmar</button>
         </div>
     
     </x-modal>

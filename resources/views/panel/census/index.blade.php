@@ -11,8 +11,8 @@
     </x-slot>
     <x-slot name="content2">
         <div class="relative inline-block">
-            <form>
-                <input type="text" name="document" placeholder="Nombre o Apellido" class="mb-2 ml-2 p-1 rounded border">
+            <form action="{{ route('panel.census.index') }}" method="GET">
+                <input type="text" name="name" placeholder="Nombre o Apellido" class="mb-2 ml-2 p-1 rounded border" title="Busca por Nombre o Apellido">
                 <button type="submit" class="absolute top-1.5 right-2">
                     <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
                         <path
@@ -27,7 +27,7 @@
         <div class="relative inline-block">
             <form action="{{ route('panel.census.index') }}" method="GET">
                 @csrf
-                <input type="text" name="document" placeholder="DNI" class="w-32 mb-2 ml-2 p-1 rounded border">
+                <input type="text" name="document" placeholder="DNI" class="w-32 mb-2 ml-2 p-1 rounded border" title="Busca por DNI">
                 <button type="submit" class="absolute top-1.5 right-2">
                     <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
                         <path
@@ -38,7 +38,7 @@
                 </button>
             </form>
         </div>
-        <a href="{{route('panel.census.index')}}" class="border border-gray-500 bg-gray-500 text-white rounded-md px-3 py-2 mb-2 ml-2 transition duration-500 ease select-none hover:bg-gray-600 focus:outline-none focus:shadow-outline text-xs inline-block">Todo</a>
+        <a href="{{route('panel.census.index')}}" class="border border-gray-500 bg-gray-500 text-white rounded-md px-3 py-2 mb-2 ml-2 transition duration-500 ease select-none hover:bg-gray-600 focus:outline-none focus:shadow-outline text-xs inline-block" title="Mostrar todo">Todo</a>
     </x-slot>
 </x-sub-title>
 

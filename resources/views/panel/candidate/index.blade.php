@@ -11,7 +11,7 @@
     
     <x-slot name="content1">
         <a href="{{ route('panel.candidate.create') }}" class="border border-green-500 bg-green-500 text-white rounded-md px-3 py-2 mb-2 ml-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline uppercase text-xs inline-block">Nuevo candidato</a>    
-        <a href="{{ url('panel/candidate/show') }}" class="border border-green-500 bg-green-500 text-white rounded-md px-3 py-2 mb-2 ml-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline uppercase text-xs inline-block">SHOW</a>
+        {{--<a href="{{ url('panel/candidate/show') }}" class="border border-green-500 bg-green-500 text-white rounded-md px-3 py-2 mb-2 ml-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline uppercase text-xs inline-block">SHOW</a>--}}
     </x-slot>
      
 </x-sub-title>

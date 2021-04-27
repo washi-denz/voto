@@ -44,7 +44,7 @@
                 <a href="#"
                     class="flex items-center px-4 py-3 text-gray-600 hover:text-white hover:bg-indigo-600 -mx-2">
                     <p class="text-sm mx-2">
-                        <span class="font-bold" href="#">Voto Electrónico 1.2</span><br><span> Desarrollado con Laravel 8 </span>
+                        <span class="font-bold" href="#">Voto Virtual1.2</span><br><span> Desarrollado con Laravel 8 </span>
                     </p>
                 </a>
             </div>

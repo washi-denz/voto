@@ -44,12 +44,16 @@
     @livewireScripts
 
     <script>
-        Livewire.on('alert',function(message){
-            Swal.fire(
-                'The Internet?',
-                message,
-                'question'
-            )
+        Livewire.on('alert-success',function(message){
+            Swal.fire(message, '', 'success')
+        });
+
+        Livewire.on('alert-info',function(message){
+            Swal.fire(message, '', 'info')
+        });
+
+        Livewire.on('alert-error',function(message){
+            Swal.fire(message, '', 'error')
         });
     </script>
 </body>
