@@ -36,11 +36,21 @@ class IndexVote extends Component
 
     public function mount($school){
 
+        $candidate = [
+            'id'         => '',
+            'photo'      => '',
+            'logo'       => '',
+            'party_name' => '',
+            'name'       => '',
+            'last_name'  => ''
+        ];
+
         $school = School::where('slug','=',$school)->first();
 
         if($school){
 
             $this->school_id = $school->id;
+            $this->candidate = $candidate;
 
         }else{
             redirect()->to('/');
@@ -147,4 +157,5 @@ class IndexVote extends Component
 
         return view('livewire.index-vote',['candidates'=>$this->candidates])->layout('layouts.main');        
     }
+    
 }

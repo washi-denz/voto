@@ -60,7 +60,7 @@
     </div>
 
     <div class="flex justify-center">
-        <a  href="{{ url('portal/'.$school) }}" class="focus:outline-none transition duration-500 w-auto py-2 px-4 font-semibold text-gray-200 bg-indigo-900 hover:bg-indigo-800 ring-2 ring-gray-200 m-4 inline-block">Atrás</a>
+        <a  href="{{ url('/') }}" class="focus:outline-none transition duration-500 w-auto py-2 px-4 font-semibold text-gray-200 bg-indigo-900 hover:bg-indigo-800 ring-2 ring-gray-200 m-4 inline-block">Atrás</a>
     </div>
 
 
@@ -70,14 +70,16 @@
 
         <div class="flex justify-center">
             <div class="bg-indigo-400 bg-opacity-30 rounded mx-3 shadow-lg p-4 md:w-1/2">
-                <div class="flex gap-2">
+  
+                <div class="flex gap-2">                
                     <img src="{{ asset($candidate['photo']) }}" class="flex-none w-32 h-32 border-2 border-indigo-900 rounded">
-                    <img src="{{ asset($candidate['logo']) }}" class="flex-grow w-32 h-32 border-2 border-indigo-900 rounded">
+                    <img src="{{ asset($candidate['logo']) }}" class="flex-grow w-32 h-32 border-2 border-indigo-900 rounded">                
                 </div>
                 <div class="flex-grow text-center">
                     <h3 class="text-indigo-200 text-xl font-medium mt-3">{{ $candidate['party_name'] }}</h3>
                     <p class="text-indigo-200 text-sm">{{ $candidate['name'] }} {{ $candidate['last_name'] }}</p>
                 </div>
+                
             </div>
         </div>
 
@@ -85,7 +87,7 @@
             <button wire:click="$set('open_modal',false)" class="focus:outline-none transition duration-500 w-auto py-2 px-4 font-semibold text-gray-200 bg-indigo-900 hover:bg-indigo-800 ring-2 ring-gray-200 m-2 cursor-pointer">Cancelar</button>
             <button wire:click="confirm({{ $candidate['id'] }})" class="focus:outline-none transition duration-500 w-32 py-2 px-2 font-semibold text-white bg-green-400 hover:bg-green-600 ring-2 ring-green-500 m-2">Confirmar</button>
         </div>
-    
+
     </x-modal>
 @endif
 

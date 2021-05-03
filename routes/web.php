@@ -30,31 +30,12 @@ Route::prefix('panel')->name('panel.')->group(function () {
 
 
 // PORTAL
+//Route::get('/',IndexVote::class)->name('index.school');
+
 Route::get('/', [SchoolController::class, 'index'])->name('portal.home');
 
 Route::prefix('portal')->name('portal.')->group(function (){
     Route::get('/{school}',IndexVote::class)->name('index.school');
 });
-
-/*
-Route::get('/', [SchoolController::class, 'index'])->name('portal.home');
-
-Route::prefix('portal')->name('portal.')->group(function (){
-    Route::get('/{school}', [SchoolController::class,'index_school'])->name('index.school');
-    Route::resource('/vote', VoteController::class);
-    Route::get('/voto/confirm', [VoteController::class, 'show_confirm'])->name('show.confirm');
-    Route::post('/voto/confirm/{id}', [VoteController::class, 'update_confirm'])->name('update.confirm');
-});
-*/
-
-/*
-Route::get('/', [SchoolController::class, 'index'])->name('portal.home');
-
-Route::prefix('portal')->name('portal.')->group(function (){
-    Route::resource('/vote', VoteController::class);
-    Route::get('/voto/confirm', [VoteController::class, 'show_confirm'])->name('show.confirm');
-    Route::post('/voto/confirm/{id}', [VoteController::class, 'update_confirm'])->name('update.confirm');
-});
-*/
 
 require __DIR__ . '/auth.php';
